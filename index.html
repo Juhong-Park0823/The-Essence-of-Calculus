@@ -480,18 +480,42 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
   <p class="chno">4장</p>
   <h2>삼각함수의 미분: 원 위를 걷기</h2>
   <p class="src">원문: <a href="https://www.3blue1brown.com/lessons/derivatives-trig-functions" target="_blank" rel="noopener">Trig Derivatives through geometry</a><br>영상: <a href="https://www.youtube.com/watch?v=S0_qX4VJhMQ&amp;list=PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr&amp;index=3" target="_blank" rel="noopener">3편 · Derivative formulas through geometry</a> (3·4장 공통)</p>
-  <div class="card"><div><span>질문</span>sin θ의 미분은 왜 cos θ일까요?</div><div><span>키워드</span>단위원 · 확대하기 · 닮은 삼각형</div><div><span>연결</span>3장처럼 "함수가 뜻하는 것"을 보고 미분합니다.</div></div>
+  <div class="card"><div><span>질문</span>sin θ의 미분은 왜 cos θ일까요?</div><div><span>키워드</span>θ·sin·cos 기초 · 단위원 · 확대하기 · 닮은 삼각형</div><div><span>연결</span>3장처럼 "함수가 뜻하는 것"을 보고 미분합니다.</div></div>
+
+  <p class="note">이 장의 첫 두 소제목(θ와 각도, 사인과 코사인)은 원문을 읽는 데 필요한 배경 설명으로, 원문에 없는 보충입니다.</p>
+
+  <h3>θ와 각도</h3>
+  <p class="ask">θ는 무슨 기호인가요?</p>
+  <p>θ는 그리스 문자 <b>세타</b>이고, 수학에서 <b>각도</b>에 흔히 붙이는 이름입니다. x가 "어떤 수"를 가리키는 이름이듯, θ도 "어떤 각도"를 가리키는 이름일 뿐 정해진 값이 있는 게 아닙니다.</p>
+  <p>각도는 보통 도(°)로 재지만, 미적분에서는 뒤에 나올 <b>라디안</b>이라는 단위를 씁니다. 180°가 π 라디안(약 3.14), 90°가 π/2 라디안(약 1.57)입니다.</p>
+
+  <h3>사인과 코사인</h3>
+  <p class="ask">sin θ, cos θ는 무엇일까요?</p>
+  <p>한 각이 θ인 직각삼각형을 생각합니다. 직각의 맞은편에 있는 가장 긴 변이 <b>빗변</b>입니다. 각 θ와 마주 보는 변을 <b class="c-blue">맞은편 변</b>(대변), 각 θ에 붙어 있는 나머지 변을 <b class="c-violet">이웃변</b>(인접변)이라고 부릅니다.</p>
+  <figure class="fig mini">
+    <svg viewBox="0 30 640 200" role="img" aria-label="각 θ를 가진 직각삼각형과 변의 이름"><polygon points="70,200 350,200 350,50" style="fill:var(--blue-soft);opacity:.5"/><line x1="70" y1="200" x2="350" y2="50" style="stroke:var(--ink);stroke-width:2.5"/><line x1="350" y1="200" x2="350" y2="50" style="stroke:var(--blue);stroke-width:4"/><line x1="70" y1="200" x2="350" y2="200" style="stroke:var(--violet);stroke-width:4"/><path d="M334 200 L334 184 L350 184" style="fill:none;stroke:var(--ink2);stroke-width:1.2"/><path d="M116 200 A46 46 0 0 0 110.5 178.3" style="fill:none;stroke:var(--red);stroke-width:2"/><text x="124.0" y="190.0" class="svgm" text-anchor="start" style="fill:var(--red)">θ</text><text x="196.0" y="115.0" class="svgt" text-anchor="end" style="fill:var(--ink)">빗변</text><text x="360.0" y="129.0" class="svgt" text-anchor="start" style="fill:var(--blue)">맞은편 변</text><text x="360.0" y="147.0" class="svgt" text-anchor="start" style="fill:var(--blue)">(대변)</text><text x="210.0" y="222.0" class="svgt" text-anchor="middle" style="fill:var(--violet)">이웃변 (인접변)</text><text x="470.0" y="80.0" class="svgt" text-anchor="start" style="fill:var(--blue)">sin θ = 맞은편 변 ÷ 빗변</text><text x="470.0" y="108.0" class="svgt" text-anchor="start" style="fill:var(--violet)">cos θ = 이웃변 ÷ 빗변</text><text x="470.0" y="150.0" class="svgt" text-anchor="start" style="fill:var(--ink2)">직각(□)의 맞은편이 빗변,</text><text x="470.0" y="172.0" class="svgt" text-anchor="start" style="fill:var(--ink2)">가장 긴 변입니다.</text></svg>
+    <figcaption>각 θ를 기준으로 변의 이름이 정해집니다. θ에 붙어 있는 변(빗변 말고)이 이웃변, θ와 마주 보는 변이 맞은편 변입니다.</figcaption>
+  </figure>
+  <div class="eq"><span class="c-blue">sin <i>θ</i></span> = <span class="frac "><span>맞은편 변</span><span>빗변</span></span> &nbsp;&nbsp;&nbsp; <span class="c-violet">cos <i>θ</i></span> = <span class="frac "><span>이웃변</span><span>빗변</span></span></div>
+  <p>이 비율은 삼각형의 크기와 상관없이 <b>각 θ만으로 정해집니다</b>. 각이 같은 직각삼각형은 모두 닮은꼴이라 변의 비율이 같기 때문입니다. 그래서 sin과 cos는 "각도를 넣으면 비율 하나가 나오는 함수"입니다. sin θ는 "사인 세타", cos θ는 "코사인 세타"라고 읽고, sin θ는 sin(θ)에서 괄호를 생략해 쓴 것입니다.</p>
 
   <h3>단위원</h3>
   <p class="ask">sin(0.8)은 무엇을 뜻할까요?</p>
   <p>반지름이 1인 원을 <b>단위원</b>이라고 합니다. 원의 가장 오른쪽 점에서 출발해, 둘레를 따라 0.8만큼 걸어간다고 생각해 봅니다. 이때 걸어간 호의 길이 0.8이 곧 각도 <b>0.8 라디안</b>입니다.</p>
   <p>그리고 <span class="m c-blue">sin θ</span>는 그 지점에서 x축 위로 잰 <b>높이</b>입니다.</p>
+  <p>왜 그런지는 위의 정의로 확인할 수 있습니다(보충). 원점, 원 위의 점, 그 점에서 x축으로 내린 발을 이으면 직각삼각형이 생기는데, 빗변이 반지름 1입니다. 그러니 sin θ = 맞은편 변 ÷ 1 = <b class="c-blue">높이</b>, cos θ = 이웃변 ÷ 1 = <b class="c-violet">가로 위치</b>입니다. 단위원에서는 sin θ와 cos θ가 그대로 점의 세로·가로 좌표가 됩니다.</p>
+  <div class="tbl"><table>
+    <tr><th>θ (라디안)</th><td>0</td><td>π/2</td><td>π</td><td>3π/2</td><td>2π</td></tr>
+    <tr><th>도(°)</th><td>0°</td><td>90°</td><td>180°</td><td>270°</td><td>360°</td></tr>
+    <tr><th class="c-blue">sin θ (높이)</th><td>0</td><td>1</td><td>0</td><td>−1</td><td>0</td></tr>
+    <tr><th class="c-violet">cos θ (가로)</th><td>1</td><td>0</td><td>−1</td><td>0</td><td>1</td></tr>
+  </table></div>
   <aside class="wait"><b>잠깐, 라디안이 뭔가요?</b> 각도를 "단위원 위에서 걸은 호의 길이"로 재는 방식입니다. 한 바퀴를 다 걸으면 원의 둘레인 2π ≈ 6.28이므로, 360° = 2π 라디안, 180° = π 라디안입니다.</aside>
 
   <h3>사인 그래프</h3>
   <p class="ask">계속 걸으면 높이는 어떻게 변할까요?</p>
   <p>θ가 커지면서 원을 돌면, 높이는 올라갔다 내려갔다를 반복합니다. 이 높이를 θ에 대한 그래프로 그리면 물결 모양이 되는데, 이것이 sin θ 그래프입니다. 가장 대표적인 파동 모양입니다.</p>
-  <p class="try"><b>직접 해 보기:</b> θ를 움직이며 원 위의 점과 그래프 위의 점이 늘 같은 높이인지 보십시오. 주황색 호의 길이가 곧 θ이고, 그래프의 가로 위치와 같습니다.</p>
+  <p class="try"><b>직접 해 보기:</b> θ를 움직이며 원 위의 점과 그래프 위의 점이 늘 같은 높이인지 보십시오. 주황색 호의 길이가 곧 θ이고, 그래프의 가로 위치와 같습니다. 보라색 가로 길이는 cos θ입니다.</p>
   <figure class="fig" id="f-unit">
     <svg viewBox="0 0 640 270" role="img" aria-label="단위원 위의 점과 사인 그래프"></svg>
     <div class="ctrl">
@@ -522,7 +546,7 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
   <h3>닮은 삼각형</h3>
   <p class="ask">작은 삼각형의 세로 변은 얼마일까요?</p>
   <p>이 작은 삼각형은 원점에서 그린 큰 삼각형과 <b>닮았습니다</b>. 큰 삼각형은 원점의 각이 θ이고, 빗변이 반지름 1입니다. 작은 삼각형에서는 세로 변 d(sin θ)와 빗변 dθ 사이의 각이 정확히 θ입니다.</p>
-  <p>도함수는 "출력의 작은 변화 ÷ 입력의 작은 변화"였습니다. 그림에서 이 비율은 작은 삼각형에서 <b>각 θ에 붙은 변 ÷ 빗변</b>이고, 이것이 바로 cos θ의 정의입니다.</p>
+  <p>도함수는 "출력의 작은 변화 ÷ 입력의 작은 변화"였습니다. 그림에서 이 비율은 작은 삼각형에서 <b>각 θ에 붙은 변(이웃변) ÷ 빗변</b>이고, 이것이 바로 이 장 앞에서 본 cos θ의 정의입니다.</p>
   <div class="eq"><span class="frac c-green"><span><i>d</i>(sin <i>θ</i>)</span><span><i>dθ</i></span></span> = <span class="frac"><span>이웃변</span><span>빗변</span></span> = <span class="c-green">cos <i>θ</i></span></div>
   <p class="try"><b>직접 해 보기:</b> 오른쪽 확대 그림에서 작은 삼각형의 각 θ와 왼쪽 큰 삼각형의 각 θ를 비교해 보십시오. dθ를 줄이면 세로 변 ÷ 빗변이 cos θ에 붙습니다.</p>
   <figure class="fig" id="f-trig">
@@ -1292,6 +1316,9 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
     <tr><td>접선</td><td>한 점에 닿는 직선. 할선의 두 점을 가깝게 할 때 다가가는 선</td><td><a href="#ch2">2</a></td></tr>
     <tr><td>극한</td><td>dx를 0에 가깝게 할 때 값이 다가가는 곳</td><td><a href="#ch2">2</a></td></tr>
     <tr><td>거듭제곱 법칙</td><td>xⁿ의 미분은 n·xⁿ⁻¹</td><td><a href="#ch3">3</a></td></tr>
+    <tr><td>빗변 · 맞은편 변 · 이웃변</td><td>직각삼각형에서 직각의 맞은편 가장 긴 변 · 각 θ와 마주 보는 변 · 각 θ에 붙은 나머지 변</td><td><a href="#ch4">4</a></td></tr>
+    <tr><td>사인 sin</td><td>sin θ = 맞은편 변 ÷ 빗변. 단위원에서는 점의 높이</td><td><a href="#ch4">4</a></td></tr>
+    <tr><td>코사인 cos</td><td>cos θ = 이웃변 ÷ 빗변. 단위원에서는 점의 가로 위치</td><td><a href="#ch4">4</a></td></tr>
     <tr><td>단위원</td><td>반지름이 1인 원</td><td><a href="#ch4">4</a></td></tr>
     <tr><td>라디안</td><td>단위원 위에서 걸은 호의 길이로 잰 각도. 180° = π</td><td><a href="#ch4">4</a></td></tr>
     <tr><td>합성</td><td>한 함수의 출력을 다른 함수의 입력으로 넣는 것. 예: sin(x²)</td><td><a href="#ch5">5</a></td></tr>
@@ -1334,7 +1361,7 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
     <tr><td>⟹</td><td>그러므로. 앞 식을 변형하면 뒤 식이 나온다</td><td><a href="#ch1">1</a></td></tr>
     <tr><td>→</td><td>~에 다가간다. 예: dt → 0</td><td><a href="#ch2">2</a></td></tr>
     <tr><td class="m">s(t)</td><td>t초일 때의 위치. 괄호는 곱셈이 아니라 "함수에 넣는다"는 뜻</td><td><a href="#ch2">2</a></td></tr>
-    <tr><td class="m">θ</td><td>각도 (라디안)</td><td><a href="#ch4">4</a></td></tr>
+    <tr><td class="m">θ</td><td>그리스 문자 세타. 각도에 흔히 붙이는 이름 (미적분에서는 라디안)</td><td><a href="#ch4">4</a></td></tr>
     <tr><td class="m">g(h(x))</td><td>h(x)의 출력을 g에 넣은 합성 함수</td><td><a href="#ch5">5</a></td></tr>
     <tr><td class="m">e</td><td>오일러 수, 약 2.71828</td><td><a href="#ch6">6</a></td></tr>
     <tr><td class="m">ln a</td><td>e를 몇 제곱해야 a가 되는지. ln 2 ≈ 0.6931</td><td><a href="#ch6">6</a></td></tr>
@@ -1662,7 +1689,8 @@ function unit(){
   let arc=`M${cx+R} ${cy}`; const N=Math.max(2,Math.ceil(th*20));
   for(let i=1;i<=N;i++){const a=th*i/N;arc+=` L${cx+R*Math.cos(a)} ${cy-R*Math.sin(a)}`;}
   s+=`<path d="${arc}" style="fill:none;stroke:var(--amber);stroke-width:4"/>`;
-  s+=L(cx,cy,px,py,'ink2',1)+L(px,cy,px,py,'blue',2.5);
+  s+=L(cx,cy,px,py,'ink2',1)+L(cx,cy,px,cy,'violet',3)+L(px,cy,px,py,'blue',2.5);
+  s+=T((cx+px)/2,cy+(Math.sin(th)>=0?16:-8),'cos θ',{a:'middle',c:'violet'});
   s+=C(px,py,5,'blue')+C(cx+R,cy,3.5,'ink2');
   s+=T(cx+R+6,cy+16,'출발');
   // graph
@@ -1677,7 +1705,7 @@ function unit(){
   s+=T(gx0+6,cy-R-14,'높이 = sin θ',{c:'blue'})+T(gx1+8,cy+R+20,'가로 = θ (걸은 거리)',{a:'end',c:'amber'});
   $('f-unit').querySelector('svg').innerHTML=s;
   $('uth-o').textContent=f(th,2);
-  $('unit-read').innerHTML=`걸은 호의 길이 θ = <b>${f(th,2)}</b> 라디안 (${f(th*180/Math.PI,1)}°) → 높이 <span class="c-blue">sin θ = <b>${f(Math.sin(th),3)}</b></span>`;
+  $('unit-read').innerHTML=`걸은 호의 길이 θ = <b>${f(th,2)}</b> 라디안 (${f(th*180/Math.PI,1)}°) → 높이 <span class="c-blue">sin θ = <b>${f(Math.sin(th),3)}</b></span> · 가로 위치 <span class="c-violet">cos θ = <b>${f(Math.cos(th),3)}</b></span>`;
 }
 bind(['uth'],unit);
 
