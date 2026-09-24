@@ -433,7 +433,11 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
   <h3>x³: 정육면체</h3>
   <p class="ask">3차원에서도 같은 방법이 통할까요?</p>
   <p>x³은 <b>한 변이 x인 정육면체의 부피</b>입니다. 한 변을 dx 늘리면 새 부피의 대부분은 <b>세 면에 붙는 얇은 판 3장</b>이고, 각각 x² × dx입니다. 모서리 막대와 꼭짓점 조각은 dx², dx³에 비례해서 무시됩니다. 그래서 미분은 <span class="m c-green">3x²</span>입니다. 2장에서 식으로 구한 3t²을 도형으로 다시 확인한 셈입니다.</p>
+  <p>식으로 쓰면, 먼저 새 부피를 조각별로 나눕니다. 원래 정육면체, 판 3장, 막대 3개, 꼭짓점 하나입니다.</p>
   <div class="eq">(<i>x</i> + <span class="c-amber"><i>dx</i></span>)³ = <i>x</i>³ + <span class="c-green">3<i>x</i>²</span><span class="c-amber"><i>dx</i></span> + <span class="c-red">3<i>x</i>·<i>dx</i>² + <i>dx</i>³</span></div>
+  <p>늘어난 부피 <span class="m c-amber">df</span>는 여기서 원래 부피 x³을 뺀 것입니다. 그다음 dx로 나누고, dx를 0에 가깝게 보냅니다. 정사각형 때와 같은 순서입니다.</p>
+  <div class="eq"><span class="c-amber"><i>df</i></span> = 3<i>x</i>²·<span class="c-amber"><i>dx</i></span> + <span class="c-red">3<i>x</i>·(<i>dx</i>)² + (<i>dx</i>)³</span> &nbsp;⟹&nbsp; <span class="frac c-green"><span><i>df</i></span><span><i>dx</i></span></span> = 3<i>x</i>² + <span class="c-red">3<i>x</i>·<i>dx</i> + (<i>dx</i>)²</span> &nbsp;→&nbsp; <span class="c-green">3<i>x</i>²</span></div>
+  <p>dx로 나눈 뒤에도 dx가 남는 빨간 항(막대와 꼭짓점)은 dx가 0에 다가가면 사라지고, 판 3장에서 온 3x²만 남습니다. 예를 들어 x = 2이면 미분계수는 3 × 2² = 12입니다.</p>
   <p class="try"><b>직접 해 보기:</b> "조각 띄우기"를 올리면 새로 붙은 조각이 떨어져 나가고, 안쪽의 원래 정육면체(파랑)가 보입니다.</p>
   <figure class="fig" id="f-box">
     <svg viewBox="0 0 640 330" role="img" aria-label="정육면체에 dx를 더해 생긴 판 세 장과 모서리 조각"></svg>
