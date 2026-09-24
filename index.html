@@ -640,7 +640,8 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
   <p>x를 dx만큼 밀면 둘째 줄이 d(x²)만큼 움직입니다. 여기서 x²에 새 이름 <span class="m">h</span>를 붙이면 편합니다. 그러면 이 변화는 <span class="m">dh</span>이고, <span class="m">dh ≈ 2x · dx</span>입니다.</p>
   <p>셋째 줄 sin(h)는 dh 때문에 움직입니다. sin의 도함수가 cos이므로, 그 변화는 <span class="m">d(sin h) ≈ cos(h) · dh</span>입니다. 이제 h를 x²으로, dh를 2x · dx로 되돌려 넣습니다.</p>
   <div class="eq"><i>d</i>(sin(<i>x</i>²)) ≈ cos(<i>x</i>²) · 2<i>x</i> · <span class="c-amber"><i>dx</i></span> &nbsp;⟹&nbsp; <span class="frac c-green"><span><i>df</i></span><span><i>dx</i></span></span> = <span class="c-green">cos(<i>x</i>²) · 2<i>x</i></span></div>
-  <p class="try"><b>직접 해 보기:</b> 원문 예시처럼 x = 1.5, dx = 0.1에서 시작합니다. 셋째 줄의 변화가 dx의 약 cos(1.5²) · 2(1.5)배인지 확인해 보십시오. dx를 줄일수록 더 정확해집니다.</p>
+  <p class="try"><b>직접 해 보기:</b> 원문 예시처럼 x = 1.5, dx = 0.1에서 시작합니다. 셋째 줄의 변화가 dx의 약 cos(1.5²) · 2(1.5)배인지 확인해 보십시오. dx를 줄일수록 더 정확해집니다. 세 줄은 같은 눈금 간격으로 현재 값 주변을 확대해 그렸기 때문에, 주황 막대의 길이를 눈으로 비교할 수 있습니다.</p>
+  <aside class="wait"><b>잠깐, x를 움직이면 h는 늘 2배로 움직이나요?</b> 아닙니다. dh ≈ 2x · dx라서 배율은 <b>2x</b>, 즉 지금 x가 어디냐에 따라 다릅니다. x = 1 근처에서는 약 2배, x = 1.5 근처에서는 약 3배, x = 0.5 근처에서는 약 1배입니다. 또 이 배율은 dx가 <b>작을 때</b>의 이야기입니다. x = 1에서 1만큼 크게 움직이면 h는 1에서 4로 3만큼 움직입니다. 정사각형의 모서리 조각 (dx)² = 1이 무시할 수 없을 만큼 크기 때문입니다. (보충)</aside>
   <figure class="fig" id="f-chain">
     <svg viewBox="0 0 640 290" role="img" aria-label="x, x제곱, sin(x제곱)을 나타내는 수직선 세 개"></svg>
     <div class="ctrl">
@@ -1872,27 +1873,31 @@ bind(['pdx','pdd'],prod);
 /* ---------- 5장: chain rule (three number lines) ---------- */
 function chain(){
   const x=+$('chx').value, dx=logv(+$('chd').value,0.3,0.001);
-  const X0=110, X1=610, ys=[60,150,240];
-  const lines=[{lo:0,hi:3,tk:[0,1,2,3],lab:'x'},{lo:0,hi:9,tk:[0,1,2,3,4,5,6,7,8,9],lab:'h = x²'},{lo:-1,hi:1,tk:[-1,-0.5,0,0.5,1],lab:'sin(h)'}];
-  const sx=(i,v)=>X0+(v-lines[i].lo)/(lines[i].hi-lines[i].lo)*(X1-X0);
+  const X0=110, X1=610, cxm=(X0+X1)/2, ys=[60,150,240];
   const h=x*x, h2=(x+dx)*(x+dx), s0=Math.sin(h), s2=Math.sin(h2);
-  const v0=[x,h,s0], v1=[x+dx,h2,s2];
+  const v0=[x,h,s0], v1=[x+dx,h2,s2], labs=['x','h = x²','sin(h)'];
+  /* same scale on all three lines: a window around the current value */
+  const W=Math.max(3*dx,Math.abs(h2-h)*1.6,Math.abs(s2-s0)*1.6,0.004), P_=(X1-X0)/2/W;
+  const step=[0.0005,0.001,0.002,0.005,0.01,0.02,0.05,0.1,0.2,0.5,1,2,5].find(s=>s*P_>=70)||5;
+  const dec=Math.max(0,-Math.floor(Math.log10(step)+1e-9));
   let s='';
-  lines.forEach((ln,i)=>{
+  [0,1,2].forEach(i=>{
+    const c=v0[i], sx=v=>cxm+(v-c)*P_;
     s+=L(X0,ys[i],X1,ys[i],'ink2',1.2);
-    ln.tk.forEach(t=>{s+=L(sx(i,t),ys[i]-4,sx(i,t),ys[i]+4)+T(sx(i,t),ys[i]+20,String(t).replace('-','−'),{a:'middle'});});
-    s+=T(X0-14,ys[i]+5,ln.lab,{a:'end',m:1,c:i===2?'green':'ink'});
-    const a=Math.max(ln.lo,Math.min(ln.hi,v0[i])), b=Math.max(ln.lo,Math.min(ln.hi,v1[i]));
-    s+=L(sx(i,a),ys[i]-9,sx(i,b),ys[i]-9,'amber',5);
-    s+=C(sx(i,a),ys[i],5,'blue');
+    for(let t=Math.ceil((c-W)/step)*step;t<=c+W+1e-12;t+=step){const X=sx(t);s+=L(X,ys[i]-4,X,ys[i]+4)+T(X,ys[i]+20,(Math.abs(t)<1e-12?0:t).toFixed(dec).replace('-','−'),{a:'middle'});}
+    s+=T(X0-14,ys[i]+5,labs[i],{a:'end',m:1,c:i===2?'green':'ink'});
+    s+=L(sx(v0[i]),ys[i]-9,sx(v1[i]),ys[i]-9,'amber',5);
+    s+=C(sx(v0[i]),ys[i],5,'blue');
   });
-  s+=L(sx(0,x),ys[0]+6,sx(1,Math.min(9,h)),ys[1]-6,'ink2',.8,true)+L(sx(1,Math.min(9,h)),ys[1]+6,sx(2,s0),ys[2]-6,'ink2',.8,true);
-  s+=T(X1,ys[0]-18,'주황 = dx',{a:'end',c:'amber'})+T(X1,ys[1]-18,'주황 = dh',{a:'end',c:'amber'})+T(X1,ys[2]-18,'주황 = d(sin h)',{a:'end',c:'amber'});
+  s+=L(cxm,ys[0]+6,cxm,ys[1]-6,'ink2',.8,true)+L(cxm,ys[1]+6,cxm,ys[2]-6,'ink2',.8,true);
+  s+=T(X1,ys[0]-18,`dx = ${fd(dx)}`,{a:'end',c:'amber'})+T(X1,ys[1]-18,`dh = ${fd(Math.abs(h2-h))} (dx의 ${f((h2-h)/dx,2)}배)`,{a:'end',c:'amber'})+T(X1,ys[2]-18,`d(sin h) = ${fd(Math.abs(s2-s0))} (dx의 ${f((s2-s0)/dx,2)}배)`,{a:'end',c:'amber'});
+  s+=T(X0-100,285,'세 줄 모두 같은 눈금 간격으로, 현재 값 주변을 확대해 그렸습니다.',{});
   $('f-chain').querySelector('svg').innerHTML=s;
   $('chx-o').textContent=f(x,2); $('chd-o').textContent=fd(dx);
   const dh=h2-h, ds=s2-s0;
   $('chain-read').innerHTML=`x = ${f(x,2)} → h = ${f(h,4)} → sin(h) = ${f(s0,4)}<br>`+
-    `dh = ${f(dh,5)} (2x · dx = ${f(2*x*dx,5)}) · d(sin h) = ${f(ds,5)} (cos(h) · dh = ${f(Math.cos(h)*dh,5)})<br>`+
+    `dh = ${f(dh,5)} (2x · dx = ${f(2*x*dx,5)}) → <b>dh ÷ dx = ${f(dh/dx,3)}</b>, dx → 0이면 2x = ${f(2*x,3)}<br>`+
+    `d(sin h) = ${f(ds,5)} (cos(h) · dh = ${f(Math.cos(h)*dh,5)})<br>`+
     `<span class="c-green">d(sin h) ÷ dx = <b>${f(ds/dx,4)}</b></span> · cos(x²) · 2x = <b>${f(Math.cos(h)*2*x,4)}</b>`;
 }
 bind(['chx','chd'],chain);
