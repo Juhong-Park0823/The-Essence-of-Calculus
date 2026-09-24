@@ -1,4 +1,3 @@
-[README.md](https://github.com/user-attachments/files/32586152/README.md)
 # 미적분학의 본질
 
 3Blue1Brown의 **미적분학의 본질(Essence of Calculus)** 시리즈를 공부하며 정리한 노트입니다.
