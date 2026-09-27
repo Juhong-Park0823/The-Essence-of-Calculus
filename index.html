@@ -554,14 +554,14 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
 
   <h3>닮은 삼각형</h3>
   <p class="ask">작은 삼각형의 세로 변은 얼마일까요?</p>
-  <p>이 작은 삼각형은 원점에서 그린 큰 삼각형과 <b>닮았습니다</b>. 큰 삼각형은 원점의 각이 θ이고, 빗변이 반지름 1입니다. 작은 삼각형에서는 세로 변 d(sin θ)와 빗변 dθ 사이의 각이 정확히 θ입니다.</p>
+  <p>이 작은 삼각형은 원점에서 그린 큰 삼각형과 <b>닮았습니다</b>. 큰 삼각형은 원점의 각이 θ이고, 빗변이 반지름 1입니다. 작은 삼각형에서는 세로 변 d(sin θ)와 빗변 dθ 사이의 각이 θ와 거의 같고, dθ를 줄일수록 θ에 붙습니다.</p>
   <p>도함수는 "출력의 작은 변화 ÷ 입력의 작은 변화"였습니다. 그림에서 이 비율은 작은 삼각형에서 <b>각 θ에 붙은 변(이웃변) ÷ 빗변</b>이고, 이것이 바로 이 장 앞에서 본 cos θ의 정의입니다.</p>
   <div class="eq"><span class="frac c-green"><span><i>d</i>(sin <i>θ</i>)</span><span><i>dθ</i></span></span> = <span class="frac"><span>이웃변</span><span>빗변</span></span> = <span class="c-green">cos <i>θ</i></span></div>
-  <p class="try"><b>직접 해 보기:</b> 오른쪽 확대 그림에서 작은 삼각형의 각 θ와 왼쪽 큰 삼각형의 각 θ를 비교해 보십시오. dθ를 줄이면 세로 변 ÷ 빗변이 cos θ에 붙습니다.</p>
+  <p class="try"><b>직접 해 보기:</b> 오른쪽 확대 그림에서 작은 삼각형의 각 θ와 왼쪽 큰 삼각형의 각 θ를 비교해 보십시오. dθ가 크면 작은 삼각형의 각이 θ보다 조금 크고(약 θ + dθ/2), dθ를 줄이면 그 각이 θ에, 세로 변 ÷ 빗변이 cos θ에 붙습니다.</p>
   <figure class="fig" id="f-trig">
     <svg viewBox="0 0 640 280" role="img" aria-label="단위원의 큰 삼각형과, 확대한 작은 삼각형"></svg>
     <div class="ctrl">
-      <label for="tth">θ</label><input type="range" id="tth" min="0.15" max="1.4" step="0.01" value="0.8"><output id="tth-o"></output>
+      <label for="tth">θ</label><input type="range" id="tth" min="0.15" max="1.3" step="0.01" value="0.8"><output id="tth-o"></output>
       <label for="tdt">dθ</label><input type="range" id="tdt" min="0" max="100" value="30"><output id="tdt-o"></output>
     </div>
     <div class="read" id="trig-read"></div>
@@ -1752,7 +1752,7 @@ bind(['sth'],slope);
 
 /* ---------- 4장: similar triangles ---------- */
 function trig(){
-  const th=+$('tth').value, dt=logv(+$('tdt').value,0.5,0.005);
+  const th=+$('tth').value, dt=logv(+$('tdt').value,0.25,0.005);
   const cx=40, cy=240, R=200;
   const P=(a)=>[cx+R*Math.cos(a), cy-R*Math.sin(a)];
   const [px,py]=P(th);
@@ -1761,8 +1761,9 @@ function trig(){
   s+=`<path d="${arc}" style="fill:none;stroke:var(--ink2);stroke-width:1"/>`;
   s+=`<polygon points="${cx},${cy} ${px},${cy} ${px},${py}" style="fill:var(--blue-soft);stroke:none"/>`;
   s+=L(cx,cy,px,py,'ink',1.5)+L(px,cy,px,py,'blue',2)+L(cx,cy,px,cy,'ink2',1.5);
-  let aa='';for(let i=0;i<=20;i++){const a=th*i/20;aa+=(i?'L':'M')+(cx+34*Math.cos(a))+' '+(cy-34*Math.sin(a));}
-  s+=`<path d="${aa}" style="fill:none;stroke:var(--red);stroke-width:1.5"/>`+T(cx+42*Math.cos(th/2)+2,cy-42*Math.sin(th/2)+5,'θ',{m:1,c:'red'});
+  const rb=Math.min(90,Math.max(34,13/th));
+  let aa='';for(let i=0;i<=20;i++){const a=th*i/20;aa+=(i?'L':'M')+(cx+rb*Math.cos(a))+' '+(cy-rb*Math.sin(a));}
+  s+=`<path d="${aa}" style="fill:none;stroke:var(--red);stroke-width:1.5"/>`+T(cx+(rb+9)*Math.cos(th/2)+2,cy-(rb+9)*Math.sin(th/2)+5,'θ',{m:1,c:'red'});
   s+=T((cx+px)/2-10,(cy+py)/2-8,'1',{m:1,a:'end'})+T(px+6,(cy+py)/2+30,'sin θ',{c:'blue'})+T((cx+px)/2,cy+18,'cos θ',{a:'middle'});
   // nudge on the big circle
   const [qx,qy]=P(th+dt);
@@ -1782,13 +1783,17 @@ function trig(){
   g+=`<path d="${ca}" style="fill:none;stroke:var(--ink2);stroke-width:1"/>`;
   g+=`<polygon points="${a1},${b1} ${a3},${b3} ${a2},${b2}" style="fill:var(--blue-soft)"/>`;
   g+=L(a1,b1,a2,b2,'amber',3)+L(a1,b1,a3,b3,'blue',2.5)+L(a3,b3,a2,b2,'ink2',1.5);
-  // angle theta at P1 between vertical (up) and chord
-  const ang0=-Math.PI/2, chordAng=Math.atan2(b2-b1,a2-a1); let ap='';
-  for(let i=0;i<=16;i++){const a=ang0+(chordAng-ang0)*i/16;ap+=(i?'L':'M')+(a1+26*Math.cos(a))+' '+(b1+26*Math.sin(a));}
-  const mid=(ang0+chordAng)/2;
-  g+=`<path d="${ap}" style="fill:none;stroke:var(--red);stroke-width:1.5"/>`+T(a1+38*Math.cos(mid),b1+38*Math.sin(mid)+5,'θ',{m:1,c:'red',a:'middle'});
+  // angle at P1 between the vertical leg (up) and the chord: equals θ + dθ/2, → θ as dθ → 0
+  const ang0=-Math.PI/2; let dA=Math.atan2(b2-b1,a2-a1)-ang0; while(dA>Math.PI)dA-=2*Math.PI; while(dA<=-Math.PI)dA+=2*Math.PI;
+  const legV=Math.hypot(a3-a1,b3-b1), rs=Math.min(Math.max(26,20/Math.abs(dA)),70,Math.max(18,legV*0.8));
+  let ap='';for(let i=0;i<=24;i++){const a=ang0+dA*i/24;ap+=(i?'L':'M')+(a1+rs*Math.cos(a))+' '+(b1+rs*Math.sin(a));}
+  g+=`<path d="${ap}" style="fill:none;stroke:var(--red);stroke-width:1.5"/>`;
+  {const mid=ang0+dA/2; let lx=a1+(rs+13)*Math.cos(mid), ly=b1+(rs+13)*Math.sin(mid)+5;
+   if(Math.abs(dA)<0.45){lx=a1+14; ly=b1-rs*0.6+5;}
+   g+=T(lx,ly,'θ',{m:1,c:'red',a:'middle'});}
   g+=C(a1,b1,4,'ink')+C(a2,b2,4,'ink');
-  {let nx=-(b2-b1),ny=a2-a1;const nl=Math.hypot(nx,ny)||1;nx/=nl;ny/=nl;const mxp=(a1+a2)/2,myp=(b1+b2)/2;if((a3-mxp)*nx+(b3-myp)*ny>0){nx=-nx;ny=-ny;}g+=T(mxp+nx*18,myp+ny*18+5,'dθ',{m:1,c:'amber',a:'middle'});}+T(a1+8,(b1+b3)/2+4,'d(sin θ)',{c:'blue'});
+  {let nx=-(b2-b1),ny=a2-a1;const nl=Math.hypot(nx,ny)||1;nx/=nl;ny/=nl;const mxp=(a1+a2)/2,myp=(b1+b2)/2;if((a3-mxp)*nx+(b3-myp)*ny>0){nx=-nx;ny=-ny;}g+=T(mxp+nx*18,myp+ny*18+5,'dθ',{m:1,c:'amber',a:'middle'});}
+  g+=T(a3+8,(b1+b3)/2+4,'d(sin θ)',{c:'blue'});
   g+='</g>';
   s+=g+T(ix+iw-8,iy+ih-10,'확대',{a:'end'});
   $('f-trig').querySelector('svg').innerHTML=s;
