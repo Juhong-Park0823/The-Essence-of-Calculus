@@ -292,7 +292,7 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
     <div class="read" id="area-read"></div>
   </figure>
   <p>dx를 0에 가깝게 할 때 비율 <span class="frac c-green"><span><i>dA</i></span><span><i>dx</i></span></span> 가 다가가는 값을 그 위치의 <b>미분계수</b>라고 합니다. "x를 살짝 바꿨을 때 A가 얼마나 민감하게 변하나"를 나타내는 숫자 하나입니다. 예를 들어 <span class="m">x&nbsp;=&nbsp;3</span>에서의 미분계수는 9입니다.</p>
-  <p>이 값을 모든 x에 대해 모으면 하나의 함수가 되는데, 이것을 <b>도함수</b>라고 합니다. 여기서는 도함수가 x²입니다. 그리고 도함수를 구하는 과정을 <b>미분</b>이라고 합니다.</p>
+  <p>이 값을 모든 x에 대해 모으면 하나의 함수가 되는데, 이것을 <b>도함수</b>라고 합니다. 여기서는 도함수가 x²입니다. 그리고 도함수를 구하는 과정을 <b>미분</b>이라고 합니다. 미분계수와 도함수의 차이는 <a href="#ch2">2장</a> '도함수'에서 그래프로 다시 봅니다.</p>
   <aside class="wait"><b>표기법.</b> y = f(x)의 도함수는 보통 <span class="frac "><span><i>dy</i></span><span><i>dx</i></span></span> 로 씁니다. 분자는 변하는 대상, 분모는 무엇을 기준으로 변하는지를 나타냅니다. 여기서는 y 자리에 넓이 A가 들어가서 <span class="frac "><span><i>dA</i></span><span><i>dx</i></span></span> 입니다. 같은 도함수를 f′(x)로도 쓰고, 한 점에서의 미분계수는 f′(3) = 9처럼 씁니다.</aside>
 
   <h3>기본정리</h3>
@@ -316,7 +316,7 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
   <p class="chno">2장</p>
   <h2>미분의 역설: 한 순간의 속도</h2>
   <p class="src">원문: <a href="https://www.3blue1brown.com/lessons/derivatives" target="_blank" rel="noopener">The paradox of the derivative</a><br>영상: <a href="https://www.youtube.com/watch?v=k_GRlO8kA0Y" target="_blank" rel="noopener">2편 보기 (한국어)</a></p>
-  <div class="card"><div><span>질문</span>"순간 속도"라는 말이 말이 될까요?</div><div><span>키워드</span>극한 · 접선 · d 표기</div><div><span>연결</span>1장에서 이름만 붙인 미분을 정확히 정의합니다.</div></div>
+  <div class="card"><div><span>질문</span>"순간 속도"라는 말이 말이 될까요?</div><div><span>키워드</span>극한 · 접선 · d 표기 · 도함수</div><div><span>연결</span>1장에서 이름만 붙인 미분을 정확히 정의합니다.</div></div>
 
   <h3>역설</h3>
   <p class="ask">"순간 변화율"이라는 말, 말이 될까요?</p>
@@ -381,6 +381,30 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
   <p>같은 계산을 모든 t에 하면 t³의 미분은 <span class="m c-green">3t²</span>입니다.</p>
   <p class="take">특정 dt로 계산하면 식이 지저분하지만, "0에 다가가면?"을 물으면 오히려 깔끔해집니다. 원문은 이게 미적분이 쓸모 있는 이유라고 말합니다.</p>
 
+  <h3>도함수</h3>
+  <p class="ask">한 점에서의 기울기와 도함수는 뭐가 달라요?</p>
+  <p>앞에서 구한 12는 <b>t = 2 한 점</b>에서의 접선 기울기입니다. 이런 숫자 하나를 <b>미분계수</b>라고 합니다. 같은 계산을 모든 t에 하면, t를 넣으면 그 점의 기울기가 나오는 <b>새 함수</b> 3t²가 생깁니다. 이 함수를 <b>도함수</b>라고 하고, 도함수를 구하는 일을 <b>미분한다</b>고 합니다.</p>
+  <p>이 장 처음의 속도 그래프 v(t)가 바로 거리 함수 s(t)의 도함수입니다. 거리 그래프의 각 순간 기울기를 새 그래프의 높이로 옮겨 그린 것입니다.</p>
+  <p class="try"><b>직접 해 보기</b> (보충): x를 왼쪽에서 오른쪽으로 움직여 보십시오. 위 곡선의 접선 기울기가 아래 그래프의 높이로 찍히면서 도함수 곡선이 그려집니다. 위 곡선이 오르막이면 아래 점은 0보다 위, 내리막이면 0보다 아래, 꼭대기와 바닥에서는 정확히 0입니다.</p>
+  <figure class="fig" id="f-deriv">
+    <svg viewBox="0 0 640 430" role="img" aria-label="위는 곡선과 접선, 아래는 접선 기울기를 모아 그린 도함수 그래프"></svg>
+    <div class="ctrl">
+      <label for="dvx">x</label><input type="range" id="dvx" min="-2" max="2" step="0.01" value="-1.6"><output id="dvx-o"></output>
+    </div>
+    <div class="read" id="deriv-read"></div>
+  </figure>
+  <p>(보충) 세 용어를 정리하면 이렇습니다. 예는 모두 s(t) = t³입니다.</p>
+  <div class="tbl"><table>
+    <tr><th>이름</th><th>뜻</th><th>그림에서</th><th>결과</th><th>예</th></tr>
+    <tr><td>평균변화율</td><td>[s(t + dt) − s(t)] ÷ dt, dt는 실제 크기</td><td>할선의 기울기</td><td>숫자 하나 (dt에 따라 달라짐)</td><td>t = 2, dt = 0.1 → 12.61</td></tr>
+    <tr><td>미분계수</td><td>dt를 0에 가깝게 할 때 평균변화율이 다가가는 값</td><td>한 점의 접선 기울기</td><td>숫자 하나</td><td>t = 2 → 12</td></tr>
+    <tr><td>도함수</td><td>모든 점의 미분계수를 모은 함수</td><td>기울기를 높이로 옮긴 그래프</td><td>함수</td><td>3t²</td></tr>
+  </table></div>
+  <p>어떤 함수 f든 도함수는 같은 방식으로 정의합니다.</p>
+  <div class="eq"><i>f</i>′(<i>x</i>) = <span class="frac c-green"><span><i>df</i></span><span><i>dx</i></span></span> = <span class="frac"><span><i>f</i>(<i>x</i> + <span class="c-amber"><i>dx</i></span>) − <i>f</i>(<i>x</i>)</span><span><span class="c-amber"><i>dx</i></span></span></span> 에서 <span class="c-amber"><i>dx</i></span> → 0</div>
+  <p>x에 숫자를 넣기 전까지는 함수(도함수)이고, x = 2처럼 숫자를 넣으면 그 점의 미분계수 f′(2)가 됩니다. lim 기호를 쓴 교과서식 표기는 <a href="#ch8">8장</a>에서 다룹니다.</p>
+  <p class="take">미분계수는 한 점의 기울기(숫자), 도함수는 모든 점의 기울기를 모은 함수입니다.</p>
+
   <h3>t = 0의 역설</h3>
   <p class="ask">t = 0에서 차는 움직이고 있을까요?</p>
   <p>3t²에 0을 넣으면 0이라서 접선이 평평합니다. 그런데 0초에서 0.1초 사이에 차는 실제로 0.001m를 갑니다. 다만 걸린 시간에 비해 너무 작아서 평균 속도가 0.01 m/s에 불과하고, 구간을 줄일수록 이 값은 0에 다가갑니다.</p>
@@ -391,7 +415,7 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
 
   <p class="take">원문의 결론: "순간 변화율"을 문자 그대로 받지 말고, "그 점 주변의 변화율을 가장 잘 근사하는 하나의 값"으로 이해하십시오.</p>
 
-  <div class="recap"><b>2장 키워드</b>: 짧은 구간의 비율(ds/dt), 0에 다가갈 때의 값(극한), 접선의 기울기(미분).<br>다음 장에서는 이 계산을 매번 하지 않고, <b>도형으로 미분 공식을 찾는 법</b>을 봅니다.</div>
+  <div class="recap"><b>2장 키워드</b>: 짧은 구간의 비율(ds/dt), 0에 다가갈 때의 값(극한), 한 점의 접선 기울기(미분계수), 모든 점의 기울기를 모은 함수(도함수).<br>다음 장에서는 이 계산을 매번 하지 않고, <b>도형으로 미분 공식을 찾는 법</b>을 봅니다.</div>
 
   <details class="quiz"><summary>원문 퀴즈 정답</summary>
     <p>접선 기울기가 음수면: 차가 뒤로 가고 있습니다. s(t) = t³에서 t = 1일 때 속도: 3·1² = 3 m/s.</p>
@@ -1322,8 +1346,8 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
     <tr><th>용어</th><th>뜻</th><th>장</th></tr>
     <tr><td>적분</td><td>잘게 쪼개 "높이 × 폭"을 전부 더한 값. 그래프 아래 넓이</td><td><a href="#ch1">1</a></td></tr>
     <tr><td>미분</td><td>도함수를 구하는 과정</td><td><a href="#ch1">1</a></td></tr>
-    <tr><td>미분계수</td><td>한 점에서의 변화율, 즉 접선의 기울기. 숫자 하나</td><td><a href="#ch1">1</a></td></tr>
-    <tr><td>도함수</td><td>모든 점의 미분계수를 값으로 갖는 함수</td><td><a href="#ch1">1</a></td></tr>
+    <tr><td>미분계수</td><td>한 점에서의 변화율, 즉 접선의 기울기. 숫자 하나</td><td><a href="#ch1">1</a>, <a href="#ch2">2</a></td></tr>
+    <tr><td>도함수</td><td>모든 점의 미분계수를 값으로 갖는 함수</td><td><a href="#ch1">1</a>, <a href="#ch2">2</a></td></tr>
     <tr><td>기본정리</td><td>넓이 함수를 미분하면 원래 그래프가 나온다. 적분과 미분은 서로 역연산</td><td><a href="#ch1">1</a></td></tr>
     <tr><td>할선</td><td>그래프 위 두 점을 잇는 직선</td><td><a href="#ch2">2</a></td></tr>
     <tr><td>접선</td><td>한 점에 닿는 직선. 할선의 두 점을 가깝게 할 때 다가가는 선</td><td><a href="#ch2">2</a></td></tr>
@@ -1528,6 +1552,36 @@ function cube(){
   $('cube-read').innerHTML=`dt = ${f(dt,4)} → 12 + 6·dt + dt² = 12 + <span class="c-red">${f(6*dt+dt*dt,5)}</span> = <b>${f(m,5)}</b>`;
 }
 bind(['kdt'],cube);
+
+/* ---------- 4b. derivative as a function ---------- */
+function deriv(){
+  const x=+$('dvx').value, F=u=>u*u*u-3*u, D=u=>3*u*u-3;
+  const X0=60,X1=440,px=u=>X0+(u+2)/4*(X1-X0);
+  const TA=20,TB=190,ty=v=>TA+(2.4-v)/4.8*(TB-TA);
+  const BA=230,BB=400,by=v=>BA+(9.5-v)/13.5*(BB-BA);
+  let s=`<defs><clipPath id="cpd"><rect x="${X0}" y="${TA}" width="${X1-X0}" height="${TB-TA}"/></clipPath></defs>`;
+  s+=L(X0,ty(0),X1,ty(0))+L(px(0),TA,px(0),TB)+L(X0,by(0),X1,by(0))+L(px(0),BA,px(0),BB);
+  let c='',q='',r='';
+  for(let i=0;i<=120;i++){const u=-2+4*i/120;c+=(i?'L':'M')+px(u)+' '+ty(F(u));q+=(i?'L':'M')+px(u)+' '+by(D(u));}
+  const n=Math.max(1,Math.round((x+2)/4*120));for(let i=0;i<=n;i++){const u=-2+(x+2)*i/n;r+=(i?'L':'M')+px(u)+' '+by(D(u));}
+  s+=`<path d="${c}" style="fill:none;stroke:var(--blue);stroke-width:2"/>`;
+  s+=`<path d="${q}" style="fill:none;stroke:var(--ink2);stroke-width:1;opacity:.5" stroke-dasharray="4 4"/>`;
+  s+=`<path d="${r}" style="fill:none;stroke:var(--green);stroke-width:2.5"/>`;
+  const y0=F(x),m=D(x),w=0.55;
+  s+=`<g clip-path="url(#cpd)">${L(px(x-w),ty(y0-m*w),px(x+w),ty(y0+m*w),'red',2)}</g>`;
+  s+=L(px(x),ty(y0),px(x),by(D(x)),'ink2',.8,true);
+  s+=`<circle cx="${px(x)}" cy="${ty(y0)}" r="4.5" style="fill:var(--blue)"/><circle cx="${px(x)}" cy="${by(m)}" r="4.5" style="fill:var(--green)"/>`;
+  s+=T(460,36,'f(x) = x³ − 3x',{m:1,c:'blue'})+T(460,250,'도함수 f′(x)',{c:'green'})+T(460,268,'(접선 기울기의 그래프)',{c:'green'});
+  s+=T(X1,ty(0)+16,'x',{m:1,a:'end'})+T(X1,by(0)+16,'x',{m:1,a:'end'})+T(px(0)-6,by(0)+4,'0',{a:'end'});
+  const sgn=Math.abs(m)<0.05?'0 (평평)':(m>0?'양수 (오르막)':'음수 (내리막)');
+  s+=T(460,70,'빨간 접선의 기울기',{c:'red'})+T(460,92,`= ${f(m,2)}`,{c:'red'})+T(460,114,sgn,{c:'red'});
+  s+=T(460,300,'아래 초록 점의 높이',{c:'green'})+T(460,322,`= ${f(m,2)}`,{c:'green'});
+  s+=T(460,360,'위 기울기 = 아래 높이',{});
+  $('f-deriv').querySelector('svg').innerHTML=s;
+  $('dvx-o').textContent=f(x,2);
+  $('deriv-read').innerHTML=`x = ${f(x,2)} · f(x) = ${f(y0,3)} · <span class="c-green">미분계수 f′(${f(x,2)}) = <b>${f(m,3)}</b></span><br>x를 움직이며 모은 초록 곡선 전체가 도함수 f′(x)입니다. (이 곡선의 식이 3x² − 3이라는 건 3장의 방법으로 구합니다.)`;
+}
+bind(['dvx'],deriv);
 
 /* ---------- 5. square ---------- */
 function square(){
