@@ -4,14 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>미적분학의 본질</title>
-<meta name="description" content="3Blue1Brown의 미적분학의 본질(Essence of Calculus) 시리즈를 슬라이더로 직접 움직여 보며 공부할 수 있게 정리한 16장 노트">
+<meta name="description" content="3Blue1Brown의 미적분학의 본질(Essence of Calculus) 시리즈를 장면별로 재생되는 그림과 함께 공부할 수 있게 정리한 16장 노트">
 <meta property="og:title" content="미적분학의 본질">
-<meta property="og:description" content="3Blue1Brown 미적분학의 본질 시리즈를 직접 움직여 보는 그림과 함께 정리한 공부 노트">
+<meta property="og:description" content="3Blue1Brown 미적분학의 본질 시리즈를 장면별로 재생되는 그림과 함께 정리한 공부 노트">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%90%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;600&family=STIX+Two+Text:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
   --paper:#F7F7F7; --panel:#F7F7F7; --ink:#1D232B; --ink2:#6B7580; --rule:#E3E6EA;
@@ -42,12 +43,12 @@
 *,*::before,*::after{box-sizing:inherit}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;color:var(--ink);background:var(--paper);
-  font-family:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
-  font-size:17px;line-height:1.8;word-break:keep-all}
+  font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  font-size:17px;line-height:1.8;word-break:keep-all;letter-spacing:-0.01em;-webkit-font-smoothing:antialiased}
 main{max-width:720px;margin:0 auto;padding:56px 22px 96px}
-h1{font-size:clamp(28px,5vw,36px);font-weight:600;line-height:1.3;margin:0 0 12px}
-h2{font-size:clamp(24px,4vw,28px);font-weight:600;line-height:1.35;margin:0 0 4px}
-h3{font-size:19px;font-weight:600;margin:40px 0 8px}
+h1{font-size:clamp(28px,5vw,36px);font-weight:700;line-height:1.3;margin:0 0 12px}
+h2{font-size:clamp(24px,4vw,28px);font-weight:700;line-height:1.35;margin:0 0 4px}
+h3{font-size:19px;font-weight:700;margin:40px 0 8px}
 p{margin:0 0 16px}
 a{color:var(--blue)}
 .lede{color:var(--ink2)}
@@ -68,10 +69,10 @@ figure.fig svg{display:block;width:100%;height:auto}
 .ctrl output{font-variant-numeric:tabular-nums;color:var(--ink);text-align:right}
 input[type=range]{width:100%;accent-color:var(--ink2)}
 input[type=range]:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
-.read{font-size:14px;margin-top:10px;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1.8}
+.read{font-size:14px;margin-top:10px;color:var(--ink);line-height:1.8}
 .read b{font-weight:600}
 figcaption{font-size:14px;color:var(--ink2);margin-top:8px;line-height:1.65}
-.svgt{font-family:"IBM Plex Sans KR",system-ui,sans-serif;font-size:13px;fill:var(--ink2)}
+.svgt{font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;font-size:13px;fill:var(--ink2)}
 .svgm{font-family:"STIX Two Text",serif;font-style:italic;font-size:15px}
 details.q{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);margin:-1px 0 0;padding:0}
 details.q + :not(details.q){margin-top:24px}
@@ -149,6 +150,27 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
   aside.side.open #sidenav{display:block}
   main{padding:28px 20px 80px}
 }
+/* ---- scene player ---- */
+figure.fig.sc .ctrl, figure.fig.sc .btns{display:none}
+.sc-lines{font-family:"STIX Two Text","Cambria Math",serif;font-size:19px;line-height:1.55;margin:12px 0 0;text-align:center}
+.sc-lines i{font-style:italic}
+.sc-lines .num{font-family:"Pretendard Variable",Pretendard,system-ui,sans-serif;font-size:.85em}
+.sc-ln{opacity:.32;white-space:nowrap;overflow-x:auto;animation:scin .35s ease both}
+.sc-ln.cur{opacity:1}
+@keyframes scin{from{opacity:0;transform:translateY(6px)}}
+.sc-cap{min-height:3.3em;margin:10px 0 6px;font-size:16px;font-weight:600;color:var(--ink);text-align:center;line-height:1.6;transition:opacity .15s ease}
+.sc-bar{display:grid;grid-template-columns:auto auto auto 1fr auto;gap:8px;align-items:center}
+.sc-bar button{font:inherit;font-size:13px;background:none;border:1px solid var(--rule);border-radius:5px;padding:3px 10px;color:var(--ink);cursor:pointer;line-height:1.6}
+.sc-bar button.sc-play{min-width:78px}
+.sc-bar button:hover{border-color:var(--ink2)}
+.sc-bar button:focus-visible,.sc-dots button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.sc-bar input[type=range]{min-width:0}
+.sc-dots{display:flex;gap:4px;justify-content:flex-end;flex-wrap:wrap}
+.sc-dots button{width:14px;height:14px;padding:0;border:0;background:none;cursor:pointer;display:grid;place-items:center}
+.sc-dots button::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--rule)}
+.sc-dots button.on::before{background:var(--ink2)}
+.sc-dots button.now::before{background:var(--ink)}
+@media (max-width:620px){.sc-lines{font-size:16px}.sc-bar{grid-template-columns:auto auto auto 1fr}.sc-dots{grid-column:1 / -1;justify-content:center}.sc-cap{font-size:15px}}
 </style>
 </head>
 <body>
@@ -161,7 +183,7 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
 <section class="page" id="intro" hidden>
   <p class="chno">3Blue1Brown · Essence of Calculus</p>
   <h1>미적분학의 본질</h1>
-  <p class="lede">3Blue1Brown의 Essence of Calculus를 원문 순서대로 따라가며 정리한 노트입니다. 소제목이 키워드이고, 각 부분은 앞에서 생긴 질문에 답하는 순서로 이어집니다. 그림은 슬라이더로 직접 움직여 볼 수 있습니다.</p>
+  <p class="lede">3Blue1Brown의 Essence of Calculus를 원문 순서대로 따라가며 정리한 노트입니다. 소제목이 키워드이고, 각 부분은 앞에서 생긴 질문에 답하는 순서로 이어집니다. 그림은 ▶를 누르면 설명과 함께 장면별로 재생되고, ⏮ ⏭나 아래 점으로 원하는 장면에 멈춰 볼 수 있습니다.</p>
   <p class="lede">색은 끝까지 같은 뜻으로 씁니다. <span class="c-blue">파랑</span>은 함수, <span class="c-amber">주황</span>은 아주 조금 바꾼 양(dx, dt), <span class="c-green">초록</span>은 변화율, <span class="c-red">빨강</span>은 기울기이거나 무시해도 되는 조각, <span class="c-violet">보라</span>는 함께 비교하는 두 번째 함수(cos θ, x² 등)입니다. 처음 보는 용어나 기호는 <a href="#glossary" style="white-space:nowrap">용어·기호</a>에 정리했습니다.</p>
 
   <p class="lede">영상은 3Blue1Brown 공식 한국어 채널의 <a href="https://www.youtube.com/playlist?list=PLkoaXOTFHiqjfsanyvicarnZv-YLC8QN-" target="_blank" rel="noopener">미적분학의 본질 재생목록</a>(12편)에서 볼 수 있습니다. 이 노트는 원문 사이트의 구성을 따라 16장으로 되어 있어서, 영상 한 편이 여러 장에 걸치는 경우가 있습니다. 각 장 제목 아래와 아래 목록에 해당 영상 링크를 달아 두었습니다.</p>
@@ -239,7 +261,7 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
   <p class="ask">고리가 수십, 수백 개인데 이걸 어떻게 다 더할까요?</p>
   <p>펴낸 직사각형들을 가로축 위에 세로로 세워서 나란히 놓아 봅니다. 가로축은 반지름 <span class="m">r</span>이고, 0부터 1까지 이어집니다. 반지름이 r인 고리로 만든 막대는 가로 위치 r에, 높이 <span class="m">2πr</span>로 섭니다.</p>
   <p>그러면 막대 꼭대기가 모두 직선 <span class="m c-red">y = 2πr</span>에 닿습니다.</p>
-  <p class="try"><b>직접 해 보기:</b> "살펴볼 고리"를 움직이면 왼쪽 고리와 오른쪽 막대가 함께 주황색으로 바뀝니다. 같은 조각이라는 뜻입니다. 그다음 "고리 개수"를 늘려 보십시오.</p>
+  <p class="try"><b>재생해 보기:</b> ▶를 누르면 원을 고리로 자르고, 고리를 펴서 막대로 세운 뒤, 고리를 가늘게 할 때 막대들이 삼각형에 다가가는 과정이 이어집니다.</p>
   <figure class="fig" id="f-rings">
     <svg viewBox="0 0 640 310" role="img" aria-label="원을 고리로 나누고, 각 고리를 펴서 막대로 세운 그림"></svg>
     <div class="ctrl">
@@ -282,7 +304,7 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
   <p class="ask">A(x)를 바로 구하긴 어려워요. 그럼 x를 살짝 늘려 보면 어떨까요?</p>
   <p>x를 <span class="m c-amber">dx</span>만큼 늘리면 넓이가 가느다란 띠만큼 늘어납니다. 이 늘어난 넓이를 <span class="m c-amber">dA</span>라고 합니다. 띠는 높이 x², 폭 dx인 직사각형과 거의 같습니다.</p>
   <div class="eq"><span class="c-amber"><i>dA</i></span> ≈ <i>x</i>² · <span class="c-amber"><i>dx</i></span> &nbsp;&nbsp;⟹&nbsp;&nbsp; <span class="c-green"><i>dA</i> / <i>dx</i></span> ≈ <i>x</i>²</div>
-  <p class="try"><b>직접 해 보기:</b> 원문 예시처럼 x = 3에 두고 dx를 0.001까지 줄여 보십시오. dA ÷ dx가 3² = 9에 붙습니다.</p>
+  <p class="try"><b>재생해 보기:</b> 원문 예시처럼 x = 3에서 dx를 0.001까지 줄이면 dA ÷ dx가 3² = 9에 붙는 과정을 봅니다.</p>
   <figure class="fig" id="f-area">
     <svg viewBox="0 0 640 300" role="img" aria-label="x제곱 그래프 아래 넓이와 dx만큼 민 띠"></svg>
     <div class="ctrl">
@@ -343,7 +365,7 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
     <figcaption>3초 근처를 크게 확대하면 곡선이 거의 직선으로 보입니다. 그 짧은 구간의 세로(ds) ÷ 가로(dt)가 기울기, 즉 그 순간의 속도입니다.</figcaption>
   </figure>
 
-  <p class="try"><b>직접 해 보기:</b> 위 그래프에서 dt를 줄이면 빨간 선의 기울기가 아래 초록 점의 속도와 같아집니다. t를 움직이면 아래 초록 넓이가 위 그래프의 높이(간 거리)와 항상 같습니다. 1장의 "속도 그래프 아래 넓이 = 이동거리"를 확인하는 부분입니다.</p>
+  <p class="try"><b>재생해 보기:</b> dt를 줄이면 빨간 선의 기울기가 아래 초록 점의 속도와 같아지고, t를 옮기면 아래 초록 넓이가 위 그래프의 높이(간 거리)와 늘 같습니다. 1장의 "속도 그래프 아래 넓이 = 이동거리"를 확인하는 부분입니다.</p>
   <figure class="fig" id="f-car">
     <svg viewBox="0 0 640 450" role="img" aria-label="위는 자동차 거리 그래프와 할선, 아래는 속도 그래프와 누적 넓이"></svg>
     <div class="ctrl">
@@ -370,7 +392,7 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
   <p class="ask">식으로 직접 계산하면 어떻게 될까요?</p>
   <p>거리 함수가 <span class="m">s(t) = t³</span>이라고 합니다. t = 2에서의 속도를 구하면, 전개하고 정리했을 때 이렇게 됩니다.</p>
   <div class="eq">[ (2 + <span class="c-amber"><i>dt</i></span>)³ − 2³ ] ÷ <span class="c-amber"><i>dt</i></span> = 12 + <span class="c-red">6·<i>dt</i> + <i>dt</i>²</span></div>
-  <p class="try"><b>직접 해 보기:</b> dt를 줄이면 빨간 항이 사라지고 12만 남습니다. 그림에서는 빨간 할선이 초록 접선과 겹칩니다.</p>
+  <p class="try"><b>재생해 보기:</b> dt를 줄이면 빨간 항이 사라지고 12만 남습니다. 그림에서는 빨간 할선이 초록 접선과 겹칩니다.</p>
   <figure class="fig" id="f-cube">
     <svg viewBox="0 0 640 300" role="img" aria-label="t세제곱 그래프에서 할선이 접선으로 다가가는 그림"></svg>
     <div class="ctrl">
@@ -385,7 +407,7 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
   <p class="ask">한 점에서의 기울기와 도함수는 뭐가 달라요?</p>
   <p>앞에서 구한 12는 <b>t = 2 한 점</b>에서의 접선 기울기입니다. 이런 숫자 하나를 <b>미분계수</b>라고 합니다. 같은 계산을 모든 t에 하면, t를 넣으면 그 점의 기울기가 나오는 <b>새 함수</b> 3t²가 생깁니다. 이 함수를 <b>도함수</b>라고 하고, 도함수를 구하는 일을 <b>미분한다</b>고 합니다.</p>
   <p>이 장 처음의 속도 그래프 v(t)가 바로 거리 함수 s(t)의 도함수입니다. 거리 그래프의 각 순간 기울기를 새 그래프의 높이로 옮겨 그린 것입니다.</p>
-  <p class="try"><b>직접 해 보기</b> (보충): x를 왼쪽에서 오른쪽으로 움직여 보십시오. 위 곡선의 접선 기울기가 아래 그래프의 높이로 찍히면서 도함수 곡선이 그려집니다. 위 곡선이 오르막이면 아래 점은 0보다 위, 내리막이면 0보다 아래, 꼭대기와 바닥에서는 정확히 0입니다.</p>
+  <p class="try"><b>재생해 보기:</b> (보충) 위 곡선의 접선 기울기가 아래 그래프의 높이로 찍히면서 도함수 곡선이 그려집니다. 오르막이면 0보다 위, 내리막이면 0보다 아래, 꼭대기와 바닥에서는 정확히 0입니다.</p>
   <figure class="fig" id="f-deriv">
     <svg viewBox="0 0 640 430" role="img" aria-label="위는 곡선과 접선, 아래는 접선 기울기를 모아 그린 도함수 그래프"></svg>
     <div class="ctrl">
@@ -443,7 +465,7 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
   <p class="ask">x²을 살짝 키우면 얼마나 커질까요?</p>
   <p>x²을 <b>한 변이 x인 정사각형의 넓이</b>로 봅니다. 한 변을 <span class="m c-amber">dx</span> 늘리면 늘어나는 넓이 <span class="m c-amber">df</span>는 세 조각입니다. 긴 띠 2개(각각 x × dx)와 모서리의 작은 정사각형(dx²)입니다.</p>
   <div class="eq"><span class="c-amber"><i>df</i></span> = 2<i>x</i>·<span class="c-amber"><i>dx</i></span> + <span class="c-red">(<i>dx</i>)²</span> &nbsp;⟹&nbsp; <span class="c-green"><i>df</i>/<i>dx</i></span> = 2<i>x</i> + <span class="c-red"><i>dx</i></span> &nbsp;→&nbsp; <span class="c-green">2<i>x</i></span></div>
-  <p class="try"><b>직접 해 보기:</b> dx를 줄이면서 빨간 모서리가 차지하는 비율을 보십시오. 원문 예시처럼 x = 3, dx = 0.01이면 띠 두 개의 넓이는 0.06으로, dx의 약 6배입니다.</p>
+  <p class="try"><b>재생해 보기:</b> dx를 줄이면서 빨간 모서리가 차지하는 비율을 보십시오. 원문 예시처럼 x = 3, dx = 0.01이면 띠 두 개의 넓이는 0.06으로, dx의 약 6배입니다.</p>
   <figure class="fig" id="f-sq">
     <svg viewBox="0 0 640 300" role="img" aria-label="정사각형에 dx를 더해 생긴 띠 두 개와 모서리 조각"></svg>
     <div class="ctrl">
@@ -462,7 +484,7 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
   <p>늘어난 부피 <span class="m c-amber">df</span>는 여기서 원래 부피 x³을 뺀 것입니다. 그다음 dx로 나누고, dx를 0에 가깝게 보냅니다. 정사각형 때와 같은 순서입니다.</p>
   <div class="eq"><span class="c-amber"><i>df</i></span> = 3<i>x</i>²·<span class="c-amber"><i>dx</i></span> + <span class="c-red">3<i>x</i>·(<i>dx</i>)² + (<i>dx</i>)³</span> &nbsp;⟹&nbsp; <span class="frac c-green"><span><i>df</i></span><span><i>dx</i></span></span> = 3<i>x</i>² + <span class="c-red">3<i>x</i>·<i>dx</i> + (<i>dx</i>)²</span> &nbsp;→&nbsp; <span class="c-green">3<i>x</i>²</span></div>
   <p>dx로 나눈 뒤에도 dx가 남는 빨간 항(막대와 꼭짓점)은 dx가 0에 다가가면 사라지고, 판 3장에서 온 3x²만 남습니다. 예를 들어 x = 2이면 미분계수는 3 × 2² = 12입니다.</p>
-  <p class="try"><b>직접 해 보기:</b> "조각 띄우기"를 올리면 새로 붙은 조각이 떨어져 나가고, 안쪽의 원래 정육면체(파랑)가 보입니다.</p>
+  <p class="try"><b>재생해 보기:</b> 새로 붙은 조각을 띄워 안쪽의 원래 정육면체(파랑)를 보고, dx를 줄일 때 판 3장만 남는 과정을 봅니다.</p>
   <figure class="fig" id="f-box">
     <svg viewBox="0 0 640 330" role="img" aria-label="정육면체에 dx를 더해 생긴 판 세 장과 모서리 조각"></svg>
     <div class="ctrl">
@@ -490,7 +512,7 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
   <h3>1/x: 웅덩이</h3>
   <p class="ask">공식을 쓰지 않고 도형으로 풀 수도 있을까요?</p>
   <p>넓이가 항상 1인 직사각형 웅덩이를 떠올립니다. 가로가 x면 세로는 1/x입니다. 가로를 dx 늘리면 오른쪽에 넓이가 새로 생기니까, 넓이 1을 지키려면 위쪽이 그만큼 깎여야 합니다. 그래서 변화량 <span class="m">d(1/x)</span>는 음수입니다.</p>
-  <p class="try"><b>직접 해 보기:</b> 초록(새로 생긴 넓이)과 빨강(깎인 넓이)이 항상 같은지 보십시오. 직사각형 모서리가 늘 1/x 곡선 위에 있는 것도 확인할 수 있습니다.</p>
+  <p class="try"><b>재생해 보기:</b> 초록(새로 생긴 넓이)과 빨강(깎인 넓이)이 늘 같은지 보십시오. 직사각형 모서리는 늘 1/x 곡선 위에 있습니다.</p>
   <figure class="fig" id="f-inv">
     <svg viewBox="0 0 640 300" role="img" aria-label="넓이 1인 직사각형의 가로를 늘리면 위쪽이 깎이는 그림"></svg>
     <div class="ctrl">
@@ -548,7 +570,7 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
   <h3>사인 그래프</h3>
   <p class="ask">계속 걸으면 높이는 어떻게 변할까요?</p>
   <p>θ가 커지면서 원을 돌면, 높이는 올라갔다 내려갔다를 반복합니다. 이 높이를 θ에 대한 그래프로 그리면 물결 모양이 되는데, 이것이 sin θ 그래프입니다. 가장 대표적인 파동 모양입니다.</p>
-  <p class="try"><b>직접 해 보기:</b> θ를 움직이며 원 위의 점과 그래프 위의 점이 늘 같은 높이인지 보십시오. 주황색 호의 길이가 곧 θ이고, 그래프의 가로 위치와 같습니다. 보라색 가로 길이는 cos θ입니다.</p>
+  <p class="try"><b>재생해 보기:</b> 원 위의 점과 그래프 위의 점이 늘 같은 높이인지 보십시오. 주황색 호의 길이가 곧 θ이고, 그래프의 가로 위치와 같습니다. 보라색 가로 길이는 cos θ입니다.</p>
   <figure class="fig" id="f-unit">
     <svg viewBox="0 0 640 270" role="img" aria-label="단위원 위의 점과 사인 그래프"></svg>
     <div class="ctrl">
@@ -561,7 +583,7 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
   <p class="ask">그래프만 보고 도함수를 짐작할 수 있을까요?</p>
   <p>3장에서처럼 접선의 기울기를 따라가 봅니다. θ = 0에서 기울기는 양수이고, 꼭대기로 갈수록 줄어서 0이 됩니다. 그다음 한동안 음수였다가, 그래프가 다시 평평해지는 곳에서 0으로 돌아옵니다.</p>
   <p>삼각함수 그래프에 익숙하다면 이 모양이 <span class="m c-green">cos θ</span>와 같다고 짐작할 수 있습니다. cos θ 그래프는 sin θ 그래프와 모양이 똑같은 물결이고, <b>왼쪽으로 π/2(90°)만큼 옮긴</b> 것입니다. 그래서 sin의 꼭대기(π/2)에서 cos는 0이고, sin이 가장 가파르게 올라가는 0에서 cos는 가장 큰 값 1입니다.</p>
-  <p class="try"><b>직접 해 보기:</b> θ를 오른쪽으로 끝까지 움직여 보십시오. sin θ(파랑) 위에 접선(빨강)이 그려지고, 그 기울기 값이 같은 좌표축 위에 초록 점으로 찍힙니다. 초록 점들은 점선으로 그린 cos θ와 정확히 겹칩니다. 원문 그래프처럼 두 곡선을 한 축에 겹쳐, 가로와 세로의 눈금 간격을 같게 그렸습니다. 두 곡선이 같은 모양의 물결이고, cos θ가 π/2만큼 앞서 있는 것이 보입니다.</p>
+  <p class="try"><b>재생해 보기:</b> sin θ(파랑) 위에 접선(빨강)이 그려지고, 그 기울기 값이 같은 좌표축 위에 초록 점으로 찍힙니다. 원문 그래프처럼 두 곡선을 한 축에 겹쳐, 가로와 세로의 눈금 간격을 같게 그렸습니다. 초록 점들은 점선 cos θ와 겹치고, cos θ가 π/2만큼 앞서 있습니다.</p>
   <figure class="fig" id="f-slope">
     <svg viewBox="0 0 640 300" role="img" aria-label="한 좌표축에 겹쳐 그린 사인 그래프, 접선, 접선 기울기 점, 코사인 그래프"></svg>
     <div class="ctrl">
@@ -581,7 +603,7 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
   <p>이 작은 삼각형은 원점에서 그린 큰 삼각형과 <b>닮았습니다</b>. 큰 삼각형은 원점의 각이 θ이고, 빗변이 반지름 1입니다. 작은 삼각형에서는 세로 변 d(sin θ)와 빗변 dθ 사이의 각이 θ와 거의 같고, dθ를 줄일수록 θ에 붙습니다.</p>
   <p>도함수는 "출력의 작은 변화 ÷ 입력의 작은 변화"였습니다. 그림에서 이 비율은 작은 삼각형에서 <b>각 θ에 붙은 변(이웃변) ÷ 빗변</b>이고, 이것이 바로 이 장 앞에서 본 cos θ의 정의입니다.</p>
   <div class="eq"><span class="frac c-green"><span><i>d</i>(sin <i>θ</i>)</span><span><i>dθ</i></span></span> = <span class="frac"><span>이웃변</span><span>빗변</span></span> = <span class="c-green">cos <i>θ</i></span></div>
-  <p class="try"><b>직접 해 보기:</b> 오른쪽 확대 그림에서 작은 삼각형의 각 θ와 왼쪽 큰 삼각형의 각 θ를 비교해 보십시오. dθ가 크면 작은 삼각형의 각이 θ보다 조금 크고(약 θ + dθ/2), dθ를 줄이면 그 각이 θ에, 세로 변 ÷ 빗변이 cos θ에 붙습니다.</p>
+  <p class="try"><b>재생해 보기:</b> 오른쪽 확대 그림에서 작은 삼각형의 각과 왼쪽 큰 삼각형의 각 θ를 비교해 보십시오. dθ가 크면 작은 삼각형의 각이 θ보다 조금 크고(약 θ + dθ/2), dθ를 줄이면 그 각이 θ에, 세로 변 ÷ 빗변이 cos θ에 붙습니다.</p>
   <figure class="fig" id="f-trig">
     <svg viewBox="0 0 640 280" role="img" aria-label="단위원의 큰 삼각형과, 확대한 작은 삼각형"></svg>
     <div class="ctrl">
@@ -623,7 +645,7 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
   <p>x를 <span class="m c-amber">dx</span>만큼 밀면, 쌓은 막대 전체의 높이 변화 <span class="m c-amber">df</span>는 sin x 막대의 변화 d(sin x)와 x² 막대의 변화 d(x²)를 더한 것입니다.</p>
   <div class="eq"><span class="c-amber"><i>df</i></span> = <i>d</i>(sin <i>x</i>) + <i>d</i>(<i>x</i>²) ≈ cos <i>x</i> · <span class="c-amber"><i>dx</i></span> + 2<i>x</i> · <span class="c-amber"><i>dx</i></span> &nbsp;⟹&nbsp; <span class="frac c-green"><span><i>df</i></span><span><i>dx</i></span></span> = <span class="c-green">cos <i>x</i> + 2<i>x</i></span></div>
   <p>4장에서 "sin의 도함수는 cos"라고 했는데, 그 뜻이 바로 "d(sin x)는 약 cos x · dx"라는 것입니다. 변화량이 dx에 비례하고, 그 비례 상수가 cos x입니다.</p>
-  <p class="try"><b>직접 해 보기:</b> 원문 예시처럼 x = 0.5에 두고 dx를 줄여 보십시오. 오른쪽에서 쌓은 막대가 늘어난 양(주황)이 두 막대 각각의 변화를 더한 것과 같습니다.</p>
+  <p class="try"><b>재생해 보기:</b> 원문 예시처럼 x = 0.5에서 dx를 줄이면, 쌓은 막대가 늘어난 양(주황)이 두 막대 각각의 변화를 더한 것과 같아지는 과정을 봅니다.</p>
   <figure class="fig" id="f-sum">
     <svg viewBox="0 0 640 300" role="img" aria-label="sin x와 x제곱을 쌓은 막대와, dx만큼 밀었을 때의 변화"></svg>
     <div class="ctrl">
@@ -640,7 +662,7 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
   <p>x를 dx만큼 밀면 가로는 d(sin x), 세로는 d(x²)만큼 늘어나고, 새 넓이가 세 조각 생깁니다. 아래쪽 얇은 띠는 가로 sin x × 두께 d(x²)입니다. 오른쪽 얇은 띠는 세로 x² × 두께 d(sin x)입니다. 모서리 조각은 dx²에 비례하므로 무시합니다. 3장의 정사각형 그림과 같은 구조입니다.</p>
   <div class="eq"><span class="c-amber"><i>df</i></span> ≈ sin <i>x</i> · <i>d</i>(<i>x</i>²) + <i>x</i>² · <i>d</i>(sin <i>x</i>) = sin <i>x</i> · 2<i>x</i> <i>dx</i> + <i>x</i>² · cos <i>x</i> <i>dx</i></div>
   <div class="eq"><span class="frac c-green"><span><i>df</i></span><span><i>dx</i></span></span> = <span class="c-green">sin <i>x</i> · 2<i>x</i> + <i>x</i>² · cos <i>x</i></span></div>
-  <p class="try"><b>직접 해 보기:</b> dx를 줄이면서 빨간 모서리의 비율이 0으로 가는지 보십시오. 두 주황 띠만 남습니다.</p>
+  <p class="try"><b>재생해 보기:</b> dx를 줄이면서 빨간 모서리의 비율이 0으로 가고 두 주황 띠만 남는 과정을 봅니다.</p>
   <figure class="fig" id="f-prod">
     <svg viewBox="0 0 640 310" role="img" aria-label="가로 sin x, 세로 x제곱인 상자와 늘어난 띠"></svg>
     <div class="ctrl">
@@ -664,7 +686,7 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
   <p>x를 dx만큼 밀면 둘째 줄이 d(x²)만큼 움직입니다. 여기서 x²에 새 이름 <span class="m">h</span>를 붙이면 편합니다. 그러면 이 변화는 <span class="m">dh</span>이고, <span class="m">dh ≈ 2x · dx</span>입니다.</p>
   <p>셋째 줄 sin(h)는 dh 때문에 움직입니다. sin의 도함수가 cos이므로, 그 변화는 <span class="m">d(sin h) ≈ cos(h) · dh</span>입니다. 이제 h를 x²으로, dh를 2x · dx로 되돌려 넣습니다.</p>
   <div class="eq"><i>d</i>(sin(<i>x</i>²)) ≈ cos(<i>x</i>²) · 2<i>x</i> · <span class="c-amber"><i>dx</i></span> &nbsp;⟹&nbsp; <span class="frac c-green"><span><i>df</i></span><span><i>dx</i></span></span> = <span class="c-green">cos(<i>x</i>²) · 2<i>x</i></span></div>
-  <p class="try"><b>직접 해 보기:</b> 원문 예시처럼 x = 1.5, dx = 0.1에서 시작합니다. 셋째 줄의 변화가 dx의 약 cos(1.5²) · 2(1.5)배인지 확인해 보십시오. dx를 줄일수록 더 정확해집니다. 원문처럼 세 줄은 각자 다른 눈금의 전체 수직선이고, 변화도 보이게 하려고 실제보다 크게 그렸습니다. 그래서 막대 길이를 서로 비교하기보다, 옆에 적힌 식과 배율(dx의 몇 배인지)을 보십시오.</p>
+  <p class="try"><b>재생해 보기:</b> 원문 예시처럼 x = 1.5, dx = 0.1에서 시작합니다. 셋째 줄의 변화가 dx의 약 cos(1.5²) · 2(1.5)배인지 보십시오. 원문처럼 세 줄은 각자 다른 눈금의 전체 수직선이고, 변화도 보이게 하려고 실제보다 크게 그렸습니다. 막대 길이보다 옆에 적힌 식과 배율(dx의 몇 배인지)을 보십시오.</p>
   <aside class="wait"><b>잠깐, x를 움직이면 h는 늘 2배로 움직이나요?</b> 아닙니다. dh ≈ 2x · dx라서 배율은 <b>2x</b>, 즉 지금 x가 어디냐에 따라 다릅니다. x = 1 근처에서는 약 2배, x = 1.5 근처에서는 약 3배, x = 0.5 근처에서는 약 1배입니다. 또 이 배율은 dx가 <b>작을 때</b>의 이야기입니다. x = 1에서 1만큼 크게 움직이면 h는 1에서 4로 3만큼 움직입니다. 정사각형의 모서리 조각 (dx)² = 1이 무시할 수 없을 만큼 크기 때문입니다. (보충)</aside>
   <figure class="fig" id="f-chain">
     <svg viewBox="0 0 640 290" role="img" aria-label="x, x제곱, sin(x제곱)을 나타내는 수직선 세 개"></svg>
@@ -730,7 +752,7 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
   <p class="ask">2 말고 다른 수를 밑으로 쓰면요?</p>
   <p>2가 특별한 건 아닙니다. 3ᵗ도 같은 성질 때문에 미분이 자기 자신에 비례하고, 이번에는 비례 상수가 약 <b>1.0986</b>입니다. 밑 2에서는 상수가 1보다 작았는데, 밑 3에서는 1보다 커졌습니다.</p>
   <p>밑을 8로 하면 상수는 약 <b>2.079</b>입니다. 그런데 이 값은 밑 2의 상수 0.6931의 정확히 3배입니다. 8 = 2³이니 상수들이 아무렇게나 나오는 게 아니라 어떤 규칙이 있다는 뜻입니다. 그렇다면 <b>비례 상수가 정확히 1이 되는 밑도 있을까요?</b></p>
-  <p class="try"><b>직접 해 보기:</b> 밑 a와 dt를 움직여 보십시오. 주황 점이 [aᵈᵗ − 1] ÷ dt이고, dt를 줄이면 초록 곡선 위로 붙습니다. 상수가 1이 되는 밑(가로 점선과 만나는 곳)을 찾아보십시오.</p>
+  <p class="try"><b>재생해 보기:</b> 주황 점이 [aᵈᵗ − 1] ÷ dt이고, dt를 줄이면 초록 곡선 위로 붙습니다. 밑을 바꾸며 상수가 1이 되는 밑(가로 점선과 만나는 곳)을 찾아갑니다.</p>
   <figure class="fig" id="f-const">
     <svg viewBox="0 0 640 290" role="img" aria-label="밑에 따른 비례 상수 그래프"></svg>
     <div class="btns" data-for="cna"><button type="button" data-v="2">밑 2</button><button type="button" data-v="3">밑 3</button><button type="button" data-v="8">밑 8</button><button type="button" data-v="e">밑 e</button></div>
@@ -746,7 +768,7 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
   <p>있습니다. 약 <b>2.71828</b>인 특별한 상수 <span class="m">e</span>, 오일러 수입니다. e가 우연히 여기 나타나는 게 아니라, 어떤 의미에서는 이 성질이 곧 <b>e를 정의</b>합니다. 밑이 e인 이 지수함수를 흔히 그냥 <b>"지수함수"</b>라고 부릅니다.</p>
   <div class="eq"><span class="frac "><span><i>d</i></span><span><i>dt</i></span></span>( <i>e<sup>t</sup></i> ) = <span class="c-green"><i>e<sup>t</sup></i></span></div>
   <p>모든 지수함수는 자기 미분에 비례하지만, 비례 상수가 1이라서 <b>미분이 자기 자신과 똑같은</b> 것은 밑이 e일 때뿐입니다. 그래프로 보면 eᵗ 위 어느 점에서든 <b>접선의 기울기가 그 점의 높이와 같습니다.</b></p>
-  <p class="try"><b>직접 해 보기:</b> "밑 e"를 누르고 t를 움직여 보십시오. 기울기 ÷ 높이가 늘 1입니다. 다른 밑에서는 이 값이 t와 상관없이 일정한 다른 상수입니다.</p>
+  <p class="try"><b>재생해 보기:</b> 밑 2와 밑 e에서 점을 옮겨 가며 기울기 ÷ 높이를 비교합니다. 밑 e에서는 이 값이 늘 1입니다.</p>
   <figure class="fig" id="f-exp">
     <svg viewBox="0 0 640 290" role="img" aria-label="지수함수 그래프와 접선"></svg>
     <div class="btns" data-for="exa"><button type="button" data-v="2">밑 2</button><button type="button" data-v="e">밑 e</button><button type="button" data-v="3">밑 3</button></div>
@@ -800,7 +822,7 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
   <p>원점이 중심이고 반지름이 5인 원은 <span class="m">x² + y² = 5²</span>으로 나타냅니다. 원 위의 모든 점은 원점에서 거리가 5이고, 피타고라스 정리로 두 변의 제곱의 합이 빗변의 제곱 5²과 같기 때문입니다. 이 원 위의 점 (3, 4)에서 접선의 기울기를 구하고 싶다고 합시다.</p>
   <p>다른 기울기 문제처럼, 곡선이 거의 접선처럼 보일 만큼 확대한 뒤 곡선을 따라 <b>작은 걸음</b>을 내딛는다고 생각합니다. 그 걸음의 세로 성분이 <span class="m c-amber">dy</span>, 가로 성분이 <span class="m c-amber">dx</span>이고, 원하는 기울기는 <span class="m">dy/dx</span>입니다.</p>
   <p>그런데 이 곡선은 <b>함수의 그래프가 아닙니다</b>. x가 입력이고 y가 출력인 관계가 아니라, x와 y가 식 하나로 서로 묶여 있을 뿐입니다. 이렇게 어떤 식을 만족하는 점 (x, y)들의 모임을 <b>음함수 곡선</b>이라고 합니다.</p>
-  <p class="try"><b>직접 해 보기:</b> 점을 원 위에서 움직여 보십시오. 접선을 따라 내딛는 작은 걸음의 dy ÷ dx가 −x/y와 같습니다.</p>
+  <p class="try"><b>재생해 보기:</b> 점을 원 위에서 옮기면서, 접선을 따라 내딛는 작은 걸음의 dy ÷ dx가 −x/y와 같은지 보십시오.</p>
   <figure class="fig" id="f-circ">
     <svg viewBox="0 0 640 300" role="img" aria-label="반지름 5인 원 위의 점과 접선, 작은 걸음"></svg>
     <div class="ctrl">
@@ -822,7 +844,7 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
   <p>왼쪽은 시간의 함수인데, 늘 상수 25와 같습니다. 그러니 시간을 dt만큼 흘려보내도 왼쪽의 값은 변하지 않아야 하고, 미분은 0입니다. 한편 왼쪽을 5장의 연쇄법칙으로 미분하면 이렇게 됩니다.</p>
   <div class="eq">2<i>x</i>(<i>t</i>) <span class="frac "><span><i>dx</i></span><span><i>dt</i></span></span> + 2<i>y</i>(<i>t</i>) <span class="frac "><span><i>dy</i></span><span><i>dt</i></span></span> = 0</div>
   <p>처음 순간에는 x = 3, y = 4이고, 꼭대기가 초속 1m로 내려가니 dy/dt = −1입니다. 넣어서 풀면 2·3·(dx/dt) + 2·4·(−1) = 0이므로 <b>dx/dt = 4/3 m/s</b>입니다.</p>
-  <p class="try"><b>직접 해 보기:</b> 시간을 흘려보내 보십시오. 꼭대기는 늘 초속 1m로 내려가지만, 아래쪽이 멀어지는 속도는 계속 바뀝니다. 처음엔 4/3 m/s이고, 꼭대기가 낮아질수록 느려집니다. 어느 순간이든 x² + y² = 25가 유지됩니다.</p>
+  <p class="try"><b>재생해 보기:</b> 꼭대기는 늘 초속 1m로 내려가지만, 아래쪽이 멀어지는 속도는 계속 바뀝니다. 처음엔 4/3 m/s이고, 꼭대기가 낮아질수록 느려집니다. 어느 순간이든 x² + y² = 25가 유지됩니다.</p>
   <figure class="fig" id="f-ladder">
     <svg viewBox="0 0 640 290" role="img" aria-label="벽에 기댄 사다리가 미끄러지는 그림"></svg>
     <div class="ctrl">
@@ -838,7 +860,7 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
   <p>S의 미분이란, x를 dx만큼, y를 dy만큼 <b>아무 방향으로나</b> 조금 움직였을 때 S가 얼마나 변하는지(<span class="m">dS</span>)입니다. 원 위에 머무를 필요도 없습니다. dx², dy²은 무시할 만큼 작으므로 이렇게 됩니다.</p>
   <div class="eq"><i>dS</i> ≈ 2<i>x</i> · <span class="c-amber"><i>dx</i></span> + 2<i>y</i> · <span class="c-amber"><i>dy</i></span></div>
   <p>원문 예시로 (3, 4)에서 dx = −0.02, dy = −0.01만큼 움직이면 S는 약 2(3)(−0.02) + 2(4)(−0.01) = −0.2만큼 변합니다.</p>
-  <p class="try"><b>직접 해 보기:</b> 걸음의 방향을 돌려 보십시오. 원 바깥쪽으로 가면 dS가 양수, 안쪽으로 가면 음수입니다. 접선 방향일 때만 dS가 0에 가까워집니다.</p>
+  <p class="try"><b>재생해 보기:</b> 걸음의 방향을 바꿔 가며 dS의 부호를 보십시오. 원 바깥쪽으로 가면 dS가 양수, 안쪽으로 가면 음수이고, 접선 방향일 때만 0에 가깝습니다.</p>
   <figure class="fig" id="f-field">
     <svg viewBox="0 0 640 300" role="img" aria-label="점 3,4에서 여러 방향으로 내딛는 작은 걸음과 S의 변화"></svg>
     <div class="btns"><button type="button" id="fd-ex">원문 예시 (−0.02, −0.01)</button><button type="button" id="fd-tan">접선 방향</button><button type="button" id="fd-out">바깥쪽</button></div>
@@ -905,7 +927,7 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
   <p>"dx가 0에 다가갈 때 다가가는 값"을 나타내려고 <b>lim</b>(limit)을 쓰고, 그 아래에 "dx → 0"을 적습니다. 다만 lim 안에서는 소문자 d를 거의 쓰지 않고, 보통 <span class="m">Δx</span>나 <span class="m">h</span>를 씁니다.</p>
   <div class="eq"><span class="frac c-green"><span><i>df</i></span><span><i>dx</i></span></span>(2) = lim<sub><i>h</i> → 0</sub> <span class="frac "><span><i>f</i>(2 + <i>h</i>) − <i>f</i>(2)</span><span><i>h</i></span></span></div>
   <p>원문의 해석은 이렇습니다. 소문자 d가 붙은 항에는 <b>"결국 0에 보낸다"는 극한의 뜻이 이미 들어 있다</b>. 그래서 왼쪽 df/dx는 오른쪽을 줄여 쓴 것이고, 오른쪽이 교과서의 정식 정의입니다.</p>
-  <p class="try"><b>직접 해 보기:</b> eˣ 그래프의 x = 0 부근을 점점 확대해 보십시오. 곡선이 점점 직선처럼 보이고, 그 기울기가 1에 가까워집니다.</p>
+  <p class="try"><b>재생해 보기:</b> eˣ 그래프의 x = 0 부근을 점점 확대합니다. 곡선이 직선처럼 보이고, 그 기울기가 1에 가까워집니다.</p>
   <figure class="fig" id="f-zoom">
     <svg viewBox="0 0 640 280" role="img" aria-label="e의 x제곱 그래프를 x=0에서 확대"></svg>
     <div class="ctrl"><label for="zmv">확대 배율</label><input type="range" id="zmv" min="0" max="100" value="0"><output id="zmv-o"></output></div>
@@ -957,7 +979,7 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
   <div class="eq">모든 <span class="c-red"><i>ε</i></span> &gt; 0에 대해 어떤 <span class="c-blue"><i>δ</i></span> &gt; 0이 있어서, 0 &lt; |<i>h</i>| &lt; <span class="c-blue"><i>δ</i></span> 이면 |<i>f</i>(<i>h</i>) − 12| &lt; <span class="c-red"><i>ε</i></span></div>
   <aside class="wait"><b>잠깐, |h|는 무슨 기호인가요?</b> <b>절댓값</b>이라고 읽고, 부호를 떼어 낸 크기, 즉 <b>0에서의 거리</b>를 뜻합니다. |3| = 3, |−3| = 3입니다. 그래서 |h| &lt; δ는 "h가 0에서 δ보다 가깝다", 즉 −δ &lt; h &lt; δ라는 뜻이고, |f(h) − 12| &lt; ε은 "출력이 12에서 ε보다 가깝다"는 뜻입니다. 0 &lt; |h|는 h = 0 자체는 빼겠다는 뜻입니다. (보충)</aside>
   <p>반대로 극한이 없으면, 0.4 같은 충분히 작은 ε을 잡았을 때 δ를 아무리 작게 해도 출력 범위가 늘 너무 큽니다.</p>
-  <p class="try"><b>직접 해 보기:</b> ε을 정하고, δ를 줄여서 파란 입력 범위의 모든 출력이 빨간 띠 안에 들어오게 해 보십시오. "점프 예시"로 바꾸면 ε = 0.4에서는 δ를 아무리 줄여도 실패합니다.</p>
+  <p class="try"><b>재생해 보기:</b> ε을 정하고 δ를 줄여서 파란 입력 범위의 모든 출력이 빨간 띠 안에 들어오는지 봅니다. 뒤쪽 장면의 점프 예시에서는 ε = 0.4일 때 δ를 아무리 줄여도 실패합니다.</p>
   <figure class="fig" id="f-eps">
     <svg viewBox="0 0 640 290" role="img" aria-label="엡실론 띠와 델타 범위"></svg>
     <div class="btns"><button type="button" id="ep-cont">연속 예시 (12 + 6h + h²)</button><button type="button" id="ep-jump">점프 예시</button></div>
@@ -993,7 +1015,7 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
   <p>두 변화는 모두 dx에 비례하니 도함수를 쓸 수 있습니다. 연쇄법칙으로 d(sin(πx)) ≈ cos(πx) · π · dx이고, 거듭제곱 법칙으로 d(x² − 1) ≈ 2x · dx입니다. x = 1을 넣으면:</p>
   <div class="eq"><span class="frac "><span>sin(π<i>x</i>)</span><span><i>x</i>² − 1</span></span> ≈ <span class="frac "><span>cos(π) · π · <span class="c-amber"><i>dx</i></span></span><span>2(1) · <span class="c-amber"><i>dx</i></span></span></span> = <span class="frac "><span>−π · <i>dx</i></span><span>2 · <i>dx</i></span></span> = <span class="c-green">−<span class="frac "><span>π</span><span>2</span></span></span></div>
   <p>dx가 약분되어 −π/2 ≈ −1.5708이 남습니다. 이 근사는 dx가 작을수록 정확해지므로, −π/2가 <b>정확한 극한값</b>입니다.</p>
-  <p class="try"><b>직접 해 보기:</b> dx를 줄이면서 f(1 + dx)가 −π/2에 다가가는 것을 보십시오. 아래 그림은 x = 1 근처에서 분자와 분모가 각각 거의 직선처럼 보이는 모습입니다.</p>
+  <p class="try"><b>재생해 보기:</b> dx를 줄이면서 f(1 + dx)가 −π/2에 다가가는 것을 보십시오. 아래 그림은 x = 1 근처에서 분자와 분모가 각각 거의 직선처럼 보이는 모습입니다.</p>
   <figure class="fig" id="f-lh">
     <svg viewBox="0 0 640 300" role="img" aria-label="분자 sin(pi x)와 분모 x제곱-1의 x=1 근처"></svg>
     <div class="ctrl"><label for="lhd">dx</label><input type="range" id="lhd" min="0" max="100" value="20"><output id="lhd-o"></output></div>
@@ -1030,9 +1052,9 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
   <p>속도가 일정하면 쉽습니다. 속도 × 시간이 거리이고, 그래프에서는 직사각형 넓이입니다(가로가 초, 세로가 m/s라 넓이의 단위가 m). 어려운 건 속도가 매 순간 바뀐다는 점입니다.</p>
   <p>그래서 짧은 구간마다 속도가 일정하다고 <b>근사</b>합니다. 0초부터 8초까지를 폭 <span class="m c-amber">dt</span>(예: 0.25초)인 구간으로 자릅니다. 1초에서 1.25초 구간에서 실제 속도는 7에서 약 8.4 m/s로 올라가는데, 편의상 구간 왼쪽 끝의 속도 7을 씁니다. 그러면 이 구간에서 간 거리는 7 × 0.25 = 1.75m, 얇은 직사각형의 넓이입니다. 실제보다 조금 작지만 크게 다르지 않습니다. 모든 구간에서 근사 거리는 v(t) · dt입니다.</p>
   <p>7과 8.4 사이 어떤 값을 써도 상관없습니다. 중요한 건 <b>dt가 작아질수록 근사가 점점 나아진다</b>는 것뿐입니다.</p>
-  <p class="try"><b>직접 해 보기:</b> dt를 줄이면 막대 넓이의 합이 곡선 아래 넓이에 붙습니다. T를 움직이면 0부터 T까지의 넓이가 곧 간 거리 s(T)입니다.</p>
+  <p class="try"><b>재생해 보기:</b> dt를 줄이면 막대 넓이의 합이 곡선 아래 넓이에 붙습니다. 끝 시간 T를 옮기면 0부터 T까지의 넓이가 곧 간 거리 s(T)입니다.</p>
   <figure class="fig" id="f-riem">
-    <svg viewBox="0 0 640 290" role="img" aria-label="속도 그래프 아래를 직사각형으로 근사"></svg>
+    <svg viewBox="0 0 640 300" role="img" aria-label="속도 그래프 아래를 직사각형으로 근사"></svg>
     <div class="ctrl">
       <label for="rmd">dt</label><input type="range" id="rmd" min="0" max="100" step="0.01" value="39.25"><output id="rmd-o"></output>
       <label for="rmt">끝 시간 T</label><input type="range" id="rmt" min="0" max="8" step="0.01" value="8"><output id="rmt-o"></output>
@@ -1108,7 +1130,7 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
   <p>cos x의 미분은 −sin x이므로, <b>−cos x의 미분이 sin x</b>입니다. 즉 −cos x가 sin x의 역도함수입니다. 실제로 −cos x 그래프는 0에서 기울기 0, π/2에서 가장 가파르고, π에서 다시 0이라, 기울기가 sin 그래프의 높이와 맞습니다.</p>
   <div class="eq">∫<sub>0</sub><sup>π</sup> sin(<i>x</i>) <i>dx</i> = (−cos π) − (−cos 0) = 1 − (−1) = 2</div>
   <p>sin 그래프 아래 넓이는 정확히 2입니다. 그러니 평균 높이는 <b>2/π ≈ 0.64</b>입니다.</p>
-  <p class="try"><b>직접 해 보기:</b> 표본 개수를 늘리면 표본 평균(위 주황 선)이 2/π에 붙습니다. 아래 그래프에서 −cos x의 양 끝을 잇는 선의 기울기도 같은 2/π입니다.</p>
+  <p class="try"><b>재생해 보기:</b> 표본 개수를 늘리면 표본 평균(위 주황 선)이 2/π에 붙습니다. 아래 그래프에서 −cos x의 양 끝을 잇는 선의 기울기도 같은 2/π입니다.</p>
   <figure class="fig" id="f-avg">
     <svg viewBox="0 0 640 360" role="img" aria-label="sin x의 표본 평균과, -cos x의 양 끝 기울기"></svg>
     <div class="ctrl"><label for="avn">표본 개수</label><input type="range" id="avn" min="2" max="80" step="1" value="6"><output id="avn-o"></output></div>
@@ -1143,7 +1165,7 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
   <h3>그래프로 보기</h3>
   <p class="ask">2계 도함수는 그래프에서 무엇일까요?</p>
   <p>도함수는 그래프의 기울기입니다. 2계 도함수는 <b>도함수의 도함수</b>, 즉 기울기가 어떻게 변하는지입니다. 그래프가 <b>위로 휘는</b> 곳에서는 기울기가 커지니 2계 도함수가 양수, <b>아래로 휘는</b> 곳에서는 음수입니다.</p>
-  <p class="try"><b>직접 해 보기:</b> x를 움직이며 세 그래프를 비교해 보십시오. 원문 예시처럼 x = 1에서는 기울기가 −2의 비율로 줄고, x = 2에서는 기울기가 변하지 않으며, x = 3에서는 2의 비율로 커집니다. (그림은 이 성질을 갖도록 만든 예시 함수입니다.)</p>
+  <p class="try"><b>재생해 보기:</b> 원문 예시처럼 x = 1에서는 기울기가 −2의 비율로 줄고, x = 2에서는 기울기가 변하지 않으며, x = 3에서는 2의 비율로 커집니다. (그림은 이 성질을 갖도록 만든 예시 함수입니다.)</p>
   <figure class="fig" id="f-hod">
     <svg viewBox="0 0 640 400" role="img" aria-label="함수, 도함수, 2계 도함수 그래프"></svg>
     <div class="ctrl"><label for="hox">x</label><input type="range" id="hox" min="0.3" max="3.7" step="0.01" value="1"><output id="hox-o"></output></div>
@@ -1232,7 +1254,7 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
   <p>수학에서 무한히 더한 합을 <b>급수</b>라고 합니다. 유한 개 항에서 멈춘 것은 테일러 다항식, 무한히 이어 붙인 것은 <b>테일러 급수</b>입니다. 실제로 무한히 더할 수는 없으니, 항을 하나씩 더한 <b>부분합</b>이 어떤 값에 다가가는지를 봅니다. 다가가면 그 값에 <b>수렴</b>한다고 하고, 흔히 줄여서 급수가 그 값과 "같다"고 말합니다.</p>
   <p>eˣ의 급수에 x = 1을 넣으면 부분합이 e = 2.71828…에 다가갑니다. x = 2를 넣으면 e²에 다가가고, 사실 0에서 아무리 먼 입력이라도 eˣ에 수렴합니다. x = 0에서의 미분 정보만으로 만든 다항식인데도 말입니다. 함수 전체의 정보가 한 점의 고계 도함수에 담겨 있다는 뜻입니다. sin, cos도 그렇습니다.</p>
   <p>하지만 항상 그렇지는 않습니다. ln x의 x = 1 근처 테일러 급수는 0과 2 사이 입력에서는 ln x에 수렴하지만, 그 밖에서는 조금만 벗어나도 부분합이 크게 요동치며 아무 값에도 다가가지 않습니다. 이를 <b>발산</b>한다고 합니다. 근사하는 점에서 수렴하는 범위까지의 최대 거리를 <b>수렴 반지름</b>이라고 합니다.</p>
-  <p class="try"><b>직접 해 보기:</b> 함수를 고르고 항의 개수를 늘려 보십시오. eˣ와 cos는 점점 넓은 범위에서 달라붙지만, ln x는 2를 넘어가는 곳에서 항을 늘릴수록 오히려 크게 벗어납니다.</p>
+  <p class="try"><b>재생해 보기:</b> cos x, eˣ, ln x 순서로 항의 개수를 늘려 봅니다. eˣ와 cos는 점점 넓은 범위에서 달라붙지만, ln x는 2를 넘어가는 곳에서 항을 늘릴수록 오히려 크게 벗어납니다.</p>
   <figure class="fig" id="f-tay">
     <svg viewBox="0 0 640 300" role="img" aria-label="테일러 다항식이 원래 함수에 다가가는 그림"></svg>
     <div class="btns"><button type="button" data-tf="cos">cos x (a = 0)</button><button type="button" data-tf="exp">eˣ (a = 0)</button><button type="button" data-tf="ln">ln x (a = 1)</button></div>
@@ -1266,7 +1288,7 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
   <p>삼각형의 밑변은 (x − a)이고, 높이는 그래프의 기울기 × (x − a)입니다. 그래프가 넓이 함수의 도함수이므로, 그래프의 기울기는 넓이 함수의 <b>2계 도함수</b> f″(a)입니다. 그래서 삼각형 넓이는 ½ × 밑변 × 높이 = ½ f″(a)(x − a)²입니다.</p>
   <div class="eq"><i>f</i>(<i>x</i>) ≈ <span class="c-blue"><i>f</i>(<i>a</i>)</span> + <span class="c-amber"><i>f</i> ′(<i>a</i>)(<i>x</i> − <i>a</i>)</span> + <span class="c-violet">½ <i>f</i> ″(<i>a</i>)(<i>x</i> − <i>a</i>)²</span></div>
   <p class="take">바로 테일러 다항식의 모양입니다. 식으로 쓰면 복잡해 보여도, 각 항이 그림에서 가리킬 수 있는 분명한 뜻을 가집니다. a까지의 넓이, 직사각형, 삼각형입니다.</p>
-  <p class="try"><b>직접 해 보기:</b> x를 a에서 멀리 옮겨 보십시오. 파랑·주황·보라를 더한 근사와 실제 넓이의 차이는 빨간 조각뿐이고, x가 a에 가까울수록 빨리 작아집니다.</p>
+  <p class="try"><b>재생해 보기:</b> 파랑·주황·보라를 더한 근사와 실제 넓이의 차이는 빨간 조각뿐이고, x가 a에 가까울수록 빨리 작아집니다.</p>
   <figure class="fig" id="f-tgeo">
     <svg viewBox="0 0 640 290" role="img" aria-label="넓이 함수의 2차 근사: 직사각형과 삼각형"></svg>
     <div class="ctrl"><label for="tgx">오른쪽 끝 x</label><input type="range" id="tgx" min="1.5" max="3.5" step="0.01" value="2.6"><output id="tgx-o"></output></div>
@@ -1292,7 +1314,7 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
   <p>함수를 입력 수직선의 모든 점을 출력 수직선의 점으로 옮기는 <b>변환</b>으로 봅니다. 이때 도함수는 입력 공간이 곳곳에서 <b>얼마나 늘어나거나 줄어드는지</b>를 잽니다. 한 입력 주변의 고르게 떨어진 점들이 출력에서 얼마나 벌어지거나 좁혀지는지가 그 입력에서의 도함수입니다.</p>
   <p>f(x) = x²은 1을 1로, 2를 4로, 3을 9로 옮깁니다. 1 주변의 점들은 약 <b>2배</b>로 늘어나고, 더 확대할수록 정확히 2를 곱하는 것처럼 보입니다. 이것이 "x = 1에서 x²의 도함수는 2"라는 사실의 변환 관점 모습입니다. 3 주변은 약 6배로 늘어납니다.</p>
   <p>0 주변에서는 확대할수록 작은 이웃이 한 점으로 뭉개지는 것처럼 보입니다. 도함수가 0이라는 건 국소적으로 0을 곱하는 것처럼 보인다는 뜻입니다. −2 주변은 늘어나면서 <b>뒤집히기도</b> 해서, 확대할수록 −4를 곱하는 것처럼 보입니다. 이것이 음의 도함수의 모습입니다.</p>
-  <p class="try"><b>직접 해 보기:</b> 입력 x와 이웃 크기를 바꿔 보십시오. 아래 줄에서 점들이 벌어지는 비율이 2x에 다가가고, 음수 입력에서는 순서가 뒤집힙니다.</p>
+  <p class="try"><b>재생해 보기:</b> 입력 x 주변 점들이 옮겨진 뒤 벌어지는 비율이 2x에 다가가고, 음수 입력에서는 순서가 뒤집힙니다.</p>
   <figure class="fig" id="f-tr">
     <svg viewBox="0 0 640 230" role="img" aria-label="x제곱이 수직선의 점들을 옮기는 모습"></svg>
     <div class="ctrl">
@@ -1314,7 +1336,7 @@ td.m{font-family:"STIX Two Text",serif;font-style:italic}
   <p>반복 적용할 때 점들은 금세 1.618 주변으로 모입니다. φ 주변을 확대하면 점들이 <b>좁혀집니다</b>. f(x) = 1 + 1/x의 도함수는 −1/x²이고, φ에서 약 <b>−0.38</b>로 크기가 1보다 작습니다. 그래서 적용할 때마다 이웃이 더 작게 뭉쳐져 φ로 끌려갑니다.</p>
   <p>−1/φ 주변에서는 도함수의 크기가 1보다 커서(약 −2.618), 점들이 매번 2배 넘게 <b>밀려납니다</b>. 그래서 φ는 <b>안정한</b> 고정점, −1/φ는 <b>불안정한</b> 고정점입니다. 조금 건드렸을 때 원래 자리로 돌아오는 경향이 있으면 안정하다고 합니다.</p>
   <div class="eq">고정점의 안정성: |<i>f</i> ′(고정점)| &lt; 1 이면 안정, &gt; 1 이면 불안정</div>
-  <p class="try"><b>직접 해 보기:</b> 시작값을 정하고 반복 횟수를 늘려 보십시오. −0.618 바로 옆에서 시작해도 결국 1.618로 갑니다.</p>
+  <p class="try"><b>재생해 보기:</b> 1에서 시작하면 1.618로 모이고, −0.618 바로 옆에서 시작해도 결국 1.618로 갑니다.</p>
   <figure class="fig" id="f-fix">
     <svg viewBox="0 0 640 200" role="img" aria-label="1 + 1/x 반복 적용"></svg>
     <div class="btns"><button type="button" id="fx-near">−0.618 바로 옆에서 시작</button><button type="button" id="fx-neg">−3에서 시작</button><button type="button" id="fx-big">10에서 시작</button></div>
@@ -1451,7 +1473,7 @@ function rings(){
   s+=T(bx+W+4,by-H-6,'높이 2πR',{c:'red',a:'end'});
   s+=T(bx,by+18,'0',{a:'middle'})+T(bx+W,by+18,'1 = R',{a:'middle'})+T(bx+W/2,by+36,'가로축: 반지름 r',{a:'middle'});
   const rf=(k-1)*dr, hf=rf*H;
-  s+=T(bx+rf*W+dr*W/2,by-(rf+dr)*H-14,`2π·${f(rf,2)}`,{a:'end',c:'amber'});
+  s+=T(bx+8,by-H+24,`주황 막대 높이 = 2π·${f(rf,2)}`,{c:'amber'});
   $('f-rings').querySelector('svg').innerHTML=s;
   $('rn-o').textContent=n+'개'; $('rk-o').textContent=k+'번째';
   let sum=0; for(let i=0;i<n;i++) sum+=2*Math.PI*i*dr*dr;
@@ -1477,7 +1499,7 @@ function area(){
   s+=R(px(x),py(x*x),px(x+dx)-px(x),py(0)-py(x*x),'fill:none;stroke:var(--ink);stroke-dasharray:3 3;stroke-width:1');
   s+=`<path d="${c}" style="fill:none;stroke:var(--blue);stroke-width:2"/>`;
   s+=L(X0,Y0,X1,Y0)+L(X0,Y0,X0,Y1);
-  s+=T(px(x*0.72),py(0)-10,'A(x)',{m:1,a:'middle'});
+  s+=T(px(x*0.78),py(0)-5,'A(x)',{m:1,a:'middle'});
   s+=T(px(1.9),py(3.61)-8,'y = x²',{m:1,c:'blue',a:'end'});
   s+=T(px(x),Y0+18,'x',{m:1,a:'middle'})+T(X0,Y0+18,'0',{a:'middle'});
   s+=T(462,60,'파란 넓이 = A(x)')+T(462,84,'주황 띠 = dA',{c:'amber'})+T(462,108,'점선 = 높이 x², 폭 dx');
@@ -1849,7 +1871,7 @@ function trig(){
   {let nx=-(b2-b1),ny=a2-a1;const nl=Math.hypot(nx,ny)||1;nx/=nl;ny/=nl;const mxp=(a1+a2)/2,myp=(b1+b2)/2;if((a3-mxp)*nx+(b3-myp)*ny>0){nx=-nx;ny=-ny;}g+=T(mxp+nx*18,myp+ny*18+5,'dθ',{m:1,c:'amber',a:'middle'});}
   g+=T(a3+8,(b1+b3)/2+4,'d(sin θ)',{c:'blue'});
   g+='</g>';
-  s+=g+T(ix+iw-8,iy+ih-10,'확대',{a:'end'});
+  s+=g+T(ix+8,iy+ih-10,'확대',{});
   $('f-trig').querySelector('svg').innerHTML=s;
   $('tth-o').textContent=f(th,2); $('tdt-o').textContent=dt<0.01?f(dt,4):f(dt,3);
   const ds=Math.sin(th+dt)-Math.sin(th);
@@ -1994,7 +2016,6 @@ function expo(){
   const H=Math.pow(a,t), m=H*Math.log(a);
   s+=`<g clip-path="url(#exc)">${P(pts,'blue',2)}${L(px(t-1.2),py(H-1.2*m),px(t+1.2),py(H+1.2*m),'red',2)}</g>`;
   s+=L(px(t),Y0,px(t),py(H),'ink2',1,true)+C(px(t),py(H),5,'red');
-  s+=T(px(t)+8,(Y0+py(H))/2,'높이',{});
   s+=T(X0+6,Y1+4,Math.abs(a-Math.E)<0.005?'y = eᵗ':`y = ${f(a,2)}ᵗ`,{c:'blue'});
   s+=T(470,70,`높이 = ${f(H,4)}`)+T(470,96,`접선 기울기 = ${f(m,4)}`,{c:'red'})+T(470,130,`기울기 ÷ 높이`,{c:'green'})+T(470,152,`= ${f(Math.log(a),4)}`,{c:'green'});
   $('f-exp').querySelector('svg').innerHTML=s;
@@ -2059,8 +2080,8 @@ function field(){
   const ex=X(x)+dx*k*M, ey=Y(y)-dy*k*M;
   s+=`<line x1="${X(x)}" y1="${Y(y)}" x2="${ex}" y2="${ey}" style="stroke:var(--amber);stroke-width:3"/>`+C(ex,ey,4,'amber');
   s+=C(X(x),Y(y),5,'ink')+'</g>';
-  [[4,'S = 16','ink2'],[5,'S = 25','blue'],[6,'S = 36','ink2']].forEach(([r,l,c])=>{const a=100*Math.PI/180;s+=T(cx+r*k*Math.cos(a)-6,cy-r*k*Math.sin(a)+4,l,{a:'end',c});});
-  s+=T(X(x)+10,Y(y)-10,'(3, 4)',{});
+  [[4,'S = 16','ink2'],[5,'S = 25','blue'],[6,'S = 36','ink2']].forEach(([r,l,c])=>{const a=100*Math.PI/180;s+=T(cx+r*k*Math.cos(a)-4,cy-r*k*Math.sin(a)-6,l,{a:'end',c});});
+  {const out=Math.cos(ang)*0.6+Math.sin(ang)*0.8>0.2?-1:1;s+=T(X(x)+out*0.6*18,Y(y)-out*0.8*18+4,'(3, 4)',{a:'middle'});}
   const exact=(x+dx)**2+(y+dy)**2-25, approx=2*x*dx+2*y*dy;
   s+=T(400,60,`dx = ${f(dx,4)}, dy = ${f(dy,4)}`,{c:'amber'});
   s+=T(400,96,`2x·dx + 2y·dy = ${f(approx,4)}`);
@@ -2286,7 +2307,7 @@ function tgeo(){
   s+=G(rest,'fill:var(--red);opacity:.7');
   const pts=[];for(let i=0;i<=120;i++){const t=4*i/120;pts.push([px(t),py(g(t))]);}
   s+=P(pts,'ink',2)+L(px(a),py(g(a)),px(x+0.2),py(g(a)+gp(a)*(x+0.2-a)),'ink2',1,true);
-  s+=T(px(a),Y0+16,'a',{a:'middle',m:1})+T(px(x),Y0+16,'x',{a:'middle',m:1})+T(px(a/2),Y0-20,'f(a)',{a:'middle',c:'blue'});
+  s+=T(px(a),Y0+16,'a',{a:'middle',m:1})+T(Math.max(px(x),px(a)+16),Y0+16,'x',{a:'middle',m:1})+T(px(a/2),Y0-20,'f(a)',{a:'middle',c:'blue'});
   const ex=A(x), ap=A(a)+g(a)*(x-a)+0.5*gp(a)*(x-a)*(x-a);
   s+=T(440,60,`a까지 넓이 f(a) = ${f(A(a),4)}`,{c:'blue'})+T(440,84,`직사각형 f′(a)(x−a) = ${f(g(a)*(x-a),4)}`,{c:'amber'})+T(440,108,`삼각형 ½f″(a)(x−a)² = ${f(0.5*gp(a)*(x-a)**2,4)}`,{c:'violet'})+T(440,140,`근사 합 = ${f(ap,4)}`)+T(440,164,`실제 f(x) = ${f(ex,4)}`)+T(440,188,`빨간 조각 = ${f(ex-ap,4)}`,{c:'red'});
   $('f-tgeo').querySelector('svg').innerHTML=s;
@@ -2340,5 +2361,355 @@ $('fx-big').addEventListener('click',()=>set('fxs',10));
 })();
 </script>
 
+<script id="scenes">
+(function(){
+/* ================= scene player =================
+   SCENES[figId] = [{dur, cap, line, clear, set:{sliderId:to}, cut:{sliderId:v}, move:[a,b]}]
+   - set: 장면 안에서 move 구간(기본 0.1~0.85) 동안 이전 값 → to 로 부드럽게 이동
+   - cut: 장면 시작에서 바로 바뀜
+   - line: 식 한 줄(HTML) 또는 함수(v, lv) → HTML. v는 슬라이더 값, lv(id,hi,lo)는 로그 슬라이더 실제 값
+   - clear: 이 장면에서 식 줄을 비우고 새로 시작
+   - hl: (v, lv, op) → SVG 문자열. 꼭 필요한 장면에만, 면 채우기만 부드럽게 깜빡임(테두리·글자·화살표 없음). blink:false면 고정
+   - cap에는 <b class="c-red">…</b>처럼 강조색을 넣어 그림의 강조 색과 맞춤
+   - click: 이 장면부터 적용할 모드 버튼(선택자). 모드가 바뀔 때만 한 번 누름 */
+const SCENES={};
+function initScenes(){
+  const $=id=>document.getElementById(id);
+  const ease=u=>u<.5?2*u*u:1-Math.pow(-2*u+2,2)/2;
+  const clamp=u=>Math.max(0,Math.min(1,u));
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)');
+  const players=[];
+  Object.keys(SCENES).forEach(fid=>{
+    const fig=$(fid); if(!fig) return;
+    const scenes=SCENES[fid];
+    fig.classList.add('sc');
+    const inputs=[...fig.querySelectorAll('input[type=range]')];
+    const mkLv=v=>(id,hi,lo)=>hi*Math.pow(lo/hi,v[id]/100);
+    // 장면 시작 시점의 값 미리 계산
+    const starts=[],base=[],ends=[]; let TOT=0, cur={}; inputs.forEach(i=>cur[i.id]=+i.value);
+    scenes.forEach(s=>{
+      Object.assign(cur,s.cut||{}); starts.push(TOT); base.push({...cur});
+      Object.assign(cur,s.set||{}); ends.push({...cur}); TOT+=s.dur;
+    });
+    // 식 줄 목록(장면별로 보일 줄 번호)
+    const shown=[]; let acc=[];
+    scenes.forEach((s,i)=>{ if(s.clear) acc=[]; if(s.line) acc=acc.concat(i); shown.push(acc.slice()); });
+    const freeze=scenes.map((s,k)=>{let m=k+1;while(m<scenes.length&&!scenes[m].line&&!scenes[m].clear)m++;return ends[m-1];});
+    const maxLines=Math.max(1,...shown.map(a=>a.length));
+    // UI
+    const svg=fig.querySelector('svg');
+    const lines=document.createElement('div'); lines.className='sc-lines'; lines.style.minHeight=(maxLines*1.55)+'em';
+    const cap=document.createElement('p'); cap.className='sc-cap'; cap.setAttribute('aria-live','polite');
+    const bar=document.createElement('div'); bar.className='sc-bar';
+    bar.innerHTML=`<button type="button" class="sc-prev" aria-label="이전 장면">⏮</button><button type="button" class="sc-play">▶ 재생</button><button type="button" class="sc-next" aria-label="다음 장면">⏭</button><input type="range" min="0" max="1000" step="any" value="0" aria-label="재생 위치"><div class="sc-dots">${scenes.map((s,i)=>`<button type="button" aria-label="장면 ${i+1}" title="장면 ${i+1}"></button>`).join('')}</div>`;
+    const ctrl=fig.querySelector('.ctrl')||fig.querySelector('.btns');
+    const anchor=ctrl||svg.nextSibling;
+    fig.insertBefore(lines,anchor); fig.insertBefore(cap,anchor); fig.insertBefore(bar,anchor);
+    const btn=bar.querySelector('.sc-play'), seek=bar.querySelector('input'), dots=[...bar.querySelectorAll('.sc-dots button')];
+    let vals={}, t=0, raf=0, last=0, ci=-1, lineKey='', enter=0;
+    const svgEl=svg;
+    function overlay(now){
+      const old=svgEl.querySelector('g.sc-hl'); if(old) old.remove();
+      const s=scenes[ci]; if(!s||!s.hl) return;
+      const fade=Math.min(1,(now-enter)/450), ph=0.5-0.5*Math.cos(2*Math.PI*(now-enter)/1400);
+      const op=fade*(reduce.matches||s.blink===false?0.8:(0.3+0.7*ph));
+      svgEl.insertAdjacentHTML('beforeend',`<g class="sc-hl" pointer-events="none">${s.hl(vals,mkLv(vals),op)}</g>`);
+    }
+    function apply(nv){
+      inputs.forEach(inp=>{
+        const v=nv[inp.id]; if(v===undefined) return;
+        if(Math.abs(+inp.value-v)>1e-9||vals[inp.id]===undefined){ inp.value=v; inp.dispatchEvent(new Event('input')); }
+      });
+      vals={}; inputs.forEach(i=>vals[i.id]=+i.value);
+    }
+    const modeAt=[]; let md=null; scenes.forEach(s=>{ if(s.click) md=s.click; modeAt.push(md); });
+    let mode=null;
+    function render(tt){
+      t=Math.max(0,Math.min(TOT,tt));
+      let i=scenes.length-1; for(let k=0;k<scenes.length;k++){ if(t<starts[k]+scenes[k].dur){i=k;break;} }
+      const s=scenes[i], u=(t-starts[i])/s.dur, mv=s.move||[0.1,0.85], e=ease(clamp((u-mv[0])/(mv[1]-mv[0])));
+      if(modeAt[i]&&modeAt[i]!==mode){ mode=modeAt[i]; const el=fig.querySelector(mode)||document.querySelector(mode); if(el) el.click(); }
+      const nv={...base[i]};
+      for(const k in (s.set||{})) nv[k]=base[i][k]+(s.set[k]-base[i][k])*e;
+      apply(nv);
+      if(i!==ci){
+        ci=i; enter=performance.now(); cap.style.opacity=0;
+        setTimeout(()=>{cap.innerHTML=s.cap||'';cap.style.opacity=1;},110);
+        dots.forEach((d,k)=>{d.classList.toggle('on',k<i);d.classList.toggle('now',k===i);});
+      }
+      const key=shown[i].join(',');
+      if(key!==lineKey){ lineKey=key; lines.innerHTML=shown[i].map(k=>`<div class="sc-ln${k===shown[i][shown[i].length-1]?' cur':''}" data-k="${k}"></div>`).join(''); }
+      lines.querySelectorAll('.sc-ln').forEach(el=>{
+        const k=+el.dataset.k, L=scenes[k].line, last=k===shown[i][shown[i].length-1], v=last?vals:freeze[k], h=typeof L==='function'?L(v,mkLv(v)):L;
+        if(el.innerHTML!==h) el.innerHTML=h;
+      });
+      seek.value=t/TOT*1000;
+      overlay(performance.now());
+    }
+    const setBtn=()=>{btn.textContent=raf?'❚❚ 멈춤':(t>=TOT?'↺ 다시':'▶ 재생');};
+    function frame(now){ t+=(now-last)/1000; last=now; render(t); if(t<TOT){raf=requestAnimationFrame(frame);} else {raf=0;setBtn();} }
+    function pause(){ if(raf) cancelAnimationFrame(raf); raf=0; setBtn(); }
+    function go(i){ pause(); i=Math.max(0,Math.min(scenes.length-1,i)); render(starts[i]+(reduce.matches?scenes[i].dur-1e-3:0)); setBtn(); }
+    function play(){
+      players.forEach(p=>p!==api&&p.pause());
+      if(t>=TOT) t=0;
+      if(reduce.matches){ go(ci+(t>starts[ci]?1:0)); return; }
+      last=performance.now(); raf=requestAnimationFrame(frame); setBtn();
+    }
+    btn.addEventListener('click',()=>raf?pause():play());
+    bar.querySelector('.sc-prev').addEventListener('click',()=>go(t-starts[ci]>0.6&&!reduce.matches?ci:ci-1));
+    bar.querySelector('.sc-next').addEventListener('click',()=>go(ci+1));
+    seek.addEventListener('input',()=>{pause();render(+seek.value/1000*TOT);setBtn();});
+    dots.forEach((d,k)=>d.addEventListener('click',()=>go(k)));
+    const api={pause,tick:now=>{ if(scenes[ci]&&scenes[ci].hl&&fig.offsetParent!==null) overlay(now); }};
+    players.push(api);
+    render(0); setBtn();
+  });
+  window.addEventListener('hashchange',()=>players.forEach(p=>p.pause()));
+  (function loop(now){ players.forEach(p=>p.tick(now)); requestAnimationFrame(loop); })(performance.now());
+}
+
+/* ---- 강조: 면 채우기만 (테두리·글자 외곽선·화살표 없음) ---- */
+const hFill=(d,c,op,a)=>`<path d="${d}" style="fill:var(--${c});fill-opacity:${(a??0.45)*op};stroke:none"/>`;
+const hBox=(x,y,w,h,c,op,a)=>`<rect x="${Math.min(x,x+w)}" y="${Math.min(y,y+h)}" width="${Math.abs(w)}" height="${Math.abs(h)}" style="fill:var(--${c});fill-opacity:${(a??0.45)*op};stroke:none"/>`;
+const hPts=pts=>'M'+pts.map(p=>(+p[0]).toFixed(1)+' '+(+p[1]).toFixed(1)).join('L')+'Z';
+const hBand=(x1,y1,x2,y2,c,op,w)=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" style="stroke:var(--${c});stroke-opacity:${0.55*op};stroke-width:${w||8};stroke-linecap:round"/>`;
+
+const PZ=(hi,lo,v)=>100*Math.log(v/hi)/Math.log(lo/hi);   // 로그 슬라이더: 실제 값 → 슬라이더 위치
+const n3=(x,d)=>{x=Number(x);if(Math.abs(x)<0.5*Math.pow(10,-d))x=0;return `<span class="num">${x.toFixed(d)}</span>`;};
+
+const bc=(c,t)=>`<b class="c-${c}">${t}</b>`;
+/* ---------- 1장 ---------- */
+{ const cx=140,cy=150,RR=120,bx=300,by=270,W=300,H=225;
+SCENES['f-rings']=[
+  {dur:3.5, cut:{rn:10,rk:1}, cap:'원(반지름 R = 1)을 두께 dr인 얇은 고리 10개로 자릅니다.', line:'<i>dr</i> = 1 ÷ 10 = 0.1'},
+  {dur:5, set:{rk:10}, cap:`고리 하나를 펴면 가로 2πr, 두께 dr인 막대가 됩니다. ${bc('amber','주황 고리')}와 ${bc('amber','주황 막대')}가 같은 조각입니다.`, line:'고리 하나 ≈ 2π<i>r</i> · <i>dr</i>'},
+  {dur:4, cut:{rk:4}, cap:'4번째 고리는 안쪽 반지름이 0.3이라 막대 높이가 2π · 0.3입니다.', line:'<i>r</i> = 0.3 → 높이 2π · 0.3 ≈ 1.885'},
+  {dur:6, set:{rn:50,rk:20}, cap:`고리를 가늘게 자를수록 막대 끝이 빨간 직선 y = 2πr에 붙습니다. 막대와 직선 사이의 ${bc('red','빈틈')}이 점점 줄어듭니다.`, line:v=>`고리 ${n3(v.rn,0)}개 → 막대 넓이 합이 삼각형 넓이에 다가감`,
+   hl:(v,lv,op)=>{const n=Math.round(v.rn);let d='';for(let i=0;i<n;i++){const x0=bx+i/n*W,x1=bx+(i+1)/n*W;d+=`M${x0} ${by-i/n*H}L${x1} ${by-i/n*H}L${x1} ${by-(i+1)/n*H}Z`;}return hFill(d,'red',op,0.55);}},
+  {dur:5, cap:`막대들이 채우는 ${bc('green','삼각형')}은 밑변 R, 높이 2πR이므로 넓이는 ½ · R · 2πR = πR²입니다.`, line:'½ · <i>R</i> · 2π<i>R</i> = π<i>R</i>²',
+   hl:(v,lv,op)=>hFill(hPts([[bx,by],[bx+W,by],[bx+W,by-H]]),'green',op,0.35)}
+];}
+SCENES['f-area']=[
+  {dur:3.5, cut:{ax:3,adx:0}, cap:'x² 그래프 아래, 0부터 x까지의 넓이를 A(x)라고 합니다.', line:'<i>A</i>(<i>x</i>) = 0부터 <i>x</i>까지 넓이'},
+  {dur:3.5, cap:'x를 dx만큼 밀면 넓이가 가느다란 띠 dA만큼 늘어납니다.', line:'<i>dA</i> ≈ <i>x</i>² · <i>dx</i>'},
+  {dur:5, set:{adx:100}, cap:'dx를 줄이면 띠가 높이 x², 폭 dx인 직사각형과 거의 같아집니다.', line:(v,lv)=>`<i>dx</i> = ${n3(lv('adx',0.5,0.001),3)} → <i>dA</i> ÷ <i>dx</i> ≈ ${n3(((3+lv('adx',0.5,0.001))**3-27)/3/lv('adx',0.5,0.001),3)}`},
+  {dur:3.5, cap:'x = 3에서 dA ÷ dx는 3² = 9에 붙습니다.', line:'<i>dA</i>/<i>dx</i> (3) = 9'},
+  {dur:4.5, set:{ax:1.5}, cap:'다른 x에서도 같습니다. 넓이 함수 A의 도함수는 x²입니다.', line:v=>`<i>x</i> = ${n3(v.ax,1)} → <i>x</i>² = ${n3(v.ax*v.ax,2)} · <i>dA</i>/<i>dx</i> = <i>x</i>²`}
+];
+
+/* ---------- 2장 ---------- */
+SCENES['f-car']=[
+  {dur:4, cut:{ct:3,cdt:0}, cap:'빨간 선은 t와 t + dt 두 시점을 잇는 선입니다. 기울기는 그 구간의 평균 속도입니다.', line:'[ <i>s</i>(<i>t</i> + <i>dt</i>) − <i>s</i>(<i>t</i>) ] ÷ <i>dt</i>'},
+  {dur:5, set:{cdt:100}, cap:'dt를 줄이면 빨간 선의 기울기가 아래 초록 점의 속도에 붙습니다.', line:(v,lv)=>`<i>dt</i> = ${n3(lv('cdt',2,0.001),3)}초`},
+  {dur:5, set:{ct:8}, cap:'t를 옮겨 보면, 아래 초록 넓이가 늘 위 그래프의 높이(간 거리)와 같습니다.', line:'속도 그래프 아래 넓이 = 이동 거리'},
+  {dur:4, set:{ct:5}, cap:'거리 그래프가 가장 가파른 5초에서 속도가 가장 빠릅니다.', line:'가파른 정도(기울기) = 속도'}
+];
+SCENES['f-cube']=[
+  {dur:3.5, cut:{kdt:0}, cap:'s(t) = t³에서 t = 2와 t = 2 + dt를 잇는 빨간 할선입니다.', line:'[ (2 + <i>dt</i>)³ − 2³ ] ÷ <i>dt</i>'},
+  {dur:3.5, cap:'전개해서 정리하면 12에 빨간 항이 더해집니다.', line:'= 12 + <span class="c-red">6·<i>dt</i> + <i>dt</i>²</span>'},
+  {dur:5, set:{kdt:100}, cap:`dt를 줄이면 빨간 항이 작아지고, 할선이 초록 접선 쪽으로 돕니다. 두 선 사이의 ${bc('red','틈')}이 좁아집니다.`, hl:(v,lv,op)=>{const X0=60,X1=420,Y0=270,Y1=20,px=t=>X0+t/3.2*(X1-X0),py=y=>Y0-y/33*(Y0-Y1),d=lv('kdt',1,0.001),m=12+6*d+d*d,x=3.1;return `<defs><clipPath id="hlk"><rect x="${X0}" y="${Y1}" width="${X1-X0}" height="${Y0-Y1}"/></clipPath></defs><g clip-path="url(#hlk)">`+hFill(hPts([[px(2),py(8)],[px(x),py(8+m*(x-2))],[px(x),py(8+12*(x-2))]]),'red',op,0.4)+'</g>';}, line:(v,lv)=>{const d=lv('kdt',1,0.001);return `12 + <span class="c-red">${n3(6*d+d*d,4)}</span> = ${n3(12+6*d+d*d,4)}`;}},
+  {dur:4, cap:'dt가 0에 다가가면 기울기는 12에 붙습니다. 이것이 t = 2에서의 속도입니다.', line:'<i>ds</i>/<i>dt</i> (2) = 12'}
+];
+SCENES['f-deriv']=[
+  {dur:3.5, cut:{dvx:-2}, cap:'위 곡선 f(x) = x³ − 3x 위의 한 점에 접선(빨강)을 긋습니다.', line:'<i>f</i>(<i>x</i>) = <i>x</i>³ − 3<i>x</i>'},
+  {dur:4, set:{dvx:-1}, cap:'오르막에서는 기울기가 양수라서, 아래 초록 점이 0보다 위에 찍힙니다.', line:v=>`<i>x</i> = ${n3(v.dvx,2)} → 기울기 ${n3(3*v.dvx*v.dvx-3,2)}`},
+  {dur:3, cap:'꼭대기에서는 접선이 평평하고 기울기는 0입니다.'},
+  {dur:5, set:{dvx:1}, cap:'내리막에서는 기울기가 음수라서 초록 점이 0보다 아래에 찍힙니다.'},
+  {dur:4, set:{dvx:2}, cap:'바닥(x = 1)을 지나면 다시 오르막이고 기울기는 양수입니다.'},
+  {dur:4, cap:'이렇게 모든 점의 기울기를 모은 초록 곡선이 도함수 f′(x)입니다.', line:'<i>f</i>′(<i>x</i>) = 3<i>x</i>² − 3'}
+];
+
+/* ---------- 3장 ---------- */
+SCENES['f-sq']=[
+  {dur:3.5, cut:{sx:3,sdx:PZ(1,0.01,0.5)}, cap:'한 변이 x인 정사각형(넓이 x²)의 한 변을 dx만큼 늘립니다.', line:'<i>f</i>(<i>x</i>) = <i>x</i>²'},
+  {dur:4, cap:'늘어난 넓이 df는 띠 두 개(x·dx)와 모서리의 작은 정사각형(dx²)입니다.', line:'<i>df</i> = 2<i>x</i>·<i>dx</i> + <span class="c-red"><i>dx</i>²</span>'},
+  {dur:5, set:{sdx:100}, cap:'dx를 줄이면 모서리 dx²은 띠보다 훨씬 빨리 작아집니다.', line:(v,lv)=>{const d=lv('sdx',1,0.01);return `2<i>x</i>·<i>dx</i> = ${n3(2*v.sx*d,3)}, <span class="c-red"><i>dx</i>² = ${n3(d*d,4)}</span>`;}},
+  {dur:3.5, cap:'x = 3, dx = 0.01이면 띠 두 개의 넓이는 0.06으로 dx의 약 6배입니다.', line:'<i>df</i> ÷ <i>dx</i> = 2<i>x</i> + <span class="c-red"><i>dx</i></span>'},
+  {dur:3.5, cap:'dx가 0에 다가가면 2x만 남습니다.', line:'<i>df</i>/<i>dx</i> = 2<i>x</i>'}
+];
+SCENES['f-box']=[
+  {dur:3.5, cut:{bx:2.5,bdx:PZ(0.8,0.01,0.4),bg:0}, cap:'한 변이 x인 정육면체(부피 x³)의 세 변을 모두 dx만큼 늘립니다.', line:'<i>f</i>(<i>x</i>) = <i>x</i>³'},
+  {dur:4, set:{bg:70}, cap:'새로 붙은 조각을 띄워 보면 안쪽에 원래 정육면체(파랑)가 있습니다.'},
+  {dur:4.5, cap:'가장 큰 조각은 x² · dx 판 3장입니다. 나머지는 가는 막대와 작은 꼭짓점입니다.', line:'<i>df</i> = 3<i>x</i>²·<i>dx</i> + <span class="c-red">3<i>x</i>·<i>dx</i>² + <i>dx</i>³</span>'},
+  {dur:5, set:{bg:0,bdx:100}, cap:'dx를 줄이면 막대와 꼭짓점은 판보다 훨씬 빨리 사라집니다.', line:(v,lv)=>{const d=lv('bdx',0.8,0.01),x=v.bx;return `<i>df</i> ÷ <i>dx</i> = 3<i>x</i>² + <span class="c-red">${n3(3*x*d+d*d,4)}</span> = ${n3(3*x*x+3*x*d+d*d,3)}`;}},
+  {dur:3.5, cap:'그래서 x³의 미분은 판 3장에서 온 3x²입니다.', line:'<i>df</i>/<i>dx</i> = 3<i>x</i>²'}
+];
+SCENES['f-inv']=[
+  {dur:3.5, cut:{ix:1.5,idx:PZ(1,0.01,0.3)}, cap:'가로 x, 세로 1/x인 직사각형은 넓이가 늘 1입니다.', line:'<i>x</i> · (1/<i>x</i>) = 1'},
+  {dur:4.5, cap:'가로를 dx만큼 늘리면 넓이가 1로 남도록 세로가 줄어듭니다. 새로 생긴 초록 넓이와 깎인 빨강 넓이가 같아야 합니다.', line:'<span class="c-green">(1/<i>x</i>)·<i>dx</i></span> ≈ <span class="c-red"><i>x</i> · (줄어든 높이)</span>'},
+  {dur:4.5, set:{idx:PZ(1,0.01,0.05)}, cap:'dx를 줄이면 이 관계가 정확해집니다. 줄어든 높이는 dx/x²입니다.', line:'<i>d</i>(1/<i>x</i>) ÷ <i>dx</i> → −1/<i>x</i>²'},
+  {dur:4.5, set:{ix:2.5}, cap:'x가 커질수록 −1/x²의 크기는 작아집니다.', line:v=>`<i>x</i> = ${n3(v.ix,1)} → −1/<i>x</i>² = ${n3(-1/(v.ix*v.ix),3)}`}
+];
+
+/* ---------- 4장 ---------- */
+SCENES['f-unit']=[
+  {dur:3, cut:{uth:0}, cap:'반지름 1인 원 위를 걷습니다. 걸은 호의 길이가 θ입니다.', line:'θ = 호의 길이'},
+  {dur:4, set:{uth:0.8}, cap:'점의 높이가 sin θ, 가로 위치가 cos θ(보라)입니다.', line:v=>`θ = ${n3(v.uth,2)} → sin θ = ${n3(Math.sin(v.uth),3)}, cos θ = ${n3(Math.cos(v.uth),3)}`},
+  {dur:7, set:{uth:6.28}, cap:'한 바퀴를 도는 동안 높이가 오르내리고, 오른쪽 그래프의 점도 같은 높이로 물결을 따라갑니다.'},
+  {dur:3.5, cap:'원 위의 점과 그래프 위의 점은 늘 같은 높이입니다. 그래프의 가로 위치가 곧 θ입니다.', line:'그래프: 가로 θ, 세로 sin θ'}
+];
+SCENES['f-slope']=[
+  {dur:3.5, cut:{sth:0}, cap:'sin θ(파랑) 위의 한 점에 접선(빨강)을 긋습니다. θ = 0에서 기울기는 1입니다.', line:'sin θ의 접선 기울기'},
+  {dur:4, set:{sth:1.5708}, cap:'꼭대기로 갈수록 기울기가 줄어 0이 됩니다.', line:v=>`θ = ${n3(v.sth,2)} → 기울기 ${n3(Math.cos(v.sth),3)}`},
+  {dur:4, set:{sth:3.1416}, cap:'꼭대기를 지나면 기울기는 음수가 됩니다.'},
+  {dur:5, set:{sth:6.28}, cap:'기울기 값을 초록 점으로 계속 찍어 봅니다.'},
+  {dur:4, cap:'초록 점들이 점선 cos θ와 겹칩니다. 정확한 이유는 단위원에서 찾습니다.', line:'<i>d</i>(sin θ)/<i>d</i>θ = cos θ ?'}
+];
+SCENES['f-trig']=[
+  {dur:4, cut:{tth:0.8,tdt:0}, cap:'원 위의 점을 dθ만큼 옮기면, 확대 그림에 작은 삼각형이 생깁니다.', line:'빗변 ≈ <i>d</i>θ, 세로 변 = <i>d</i>(sin θ)'},
+  {dur:4.5, cap:`${bc('green','작은 삼각형')}은 ${bc('green','큰 삼각형')}과 닮았습니다. 세로 변과 빗변 사이의 각이 θ에 가깝습니다.`, hl:(v,lv,op)=>{const th=v.tth,dt=lv('tdt',0.25,0.005),icx=480,icy=135,mx=(Math.cos(th)+Math.cos(th+dt))/2,my=(Math.sin(th)+Math.sin(th+dt))/2,Z=160/dt,M=(x,y)=>[icx+(x-mx)*Z,icy-(y-my)*Z],cx=40,cy=240,R=200,px=cx+R*Math.cos(th),py=cy-R*Math.sin(th);return `<defs><clipPath id="hlt"><rect x="340" y="20" width="280" height="230"/></clipPath></defs><g clip-path="url(#hlt)">`+hFill(hPts([M(Math.cos(th),Math.sin(th)),M(Math.cos(th),Math.sin(th+dt)),M(Math.cos(th+dt),Math.sin(th+dt))]),'green',op,0.4)+'</g>'+hFill(hPts([[cx,cy],[px,cy],[px,py]]),'green',op,0.35);}, line:'작은 삼각형의 각 ≈ θ'},
+  {dur:5, set:{tdt:100}, cap:'dθ를 줄이면 그 각이 θ에 붙고, 세로 변 ÷ 빗변이 cos θ에 붙습니다.', line:(v,lv)=>{const d=lv('tdt',0.25,0.005),th=v.tth;return `<i>d</i>(sin θ) ÷ <i>d</i>θ = ${n3((Math.sin(th+d)-Math.sin(th))/d,4)} · cos θ = ${n3(Math.cos(th),4)}`;}},
+  {dur:4, cap:'세로 변은 각 θ에 붙은 이웃변이므로, 이웃변 ÷ 빗변 = cos θ입니다.', line:'<i>d</i>(sin θ)/<i>d</i>θ = 이웃변 ÷ 빗변 = cos θ'},
+  {dur:4.5, set:{tth:1.2}, cap:'θ가 달라져도 같은 관계가 성립합니다.', line:v=>`θ = ${n3(v.tth,2)} → cos θ = ${n3(Math.cos(v.tth),3)}`}
+];
+
+/* ---------- 5장 ---------- */
+SCENES['f-sum']=[
+  {dur:3.5, cut:{smx:0.5,smd:PZ(0.5,0.001,0.2)}, cap:'f(x) = sin x + x²을 두 막대(sin x와 x²)를 쌓은 높이로 봅니다.', line:'<i>f</i>(<i>x</i>) = sin <i>x</i> + <i>x</i>²'},
+  {dur:4.5, cap:'x를 dx만큼 밀면 두 막대가 각각 d(sin x), d(x²)만큼 자랍니다. 쌓은 막대가 늘어난 양(주황)은 그 둘의 합입니다.', line:'<i>df</i> = <i>d</i>(sin <i>x</i>) + <i>d</i>(<i>x</i>²)'},
+  {dur:5, set:{smd:100}, cap:'dx를 줄이면 각 변화가 cos x · dx, 2x · dx에 가까워집니다.', line:'<i>df</i> ≈ cos <i>x</i> · <i>dx</i> + 2<i>x</i> · <i>dx</i>'},
+  {dur:4, cap:'양변을 dx로 나누면, 합의 미분은 각 미분의 합입니다.', line:'<i>df</i>/<i>dx</i> = cos <i>x</i> + 2<i>x</i>'},
+  {dur:4.5, set:{smx:1.2}, cap:'x가 달라져도 같은 관계입니다.', line:v=>`<i>x</i> = ${n3(v.smx,2)} → cos <i>x</i> + 2<i>x</i> = ${n3(Math.cos(v.smx)+2*v.smx,3)}`}
+];
+SCENES['f-prod']=[
+  {dur:3.5, cut:{pdx:1,pdd:PZ(0.25,0.001,0.2)}, cap:'f(x) = sin x · x²을 가로 sin x, 세로 x²인 직사각형의 넓이로 봅니다.', line:'<i>f</i>(<i>x</i>) = sin <i>x</i> · <i>x</i>²'},
+  {dur:4.5, cap:'x를 dx만큼 밀면 가로와 세로가 함께 늘어, 새 넓이가 띠 두 개와 모서리 하나로 생깁니다.', line:'<i>df</i> = sin <i>x</i> · <i>d</i>(<i>x</i>²) + <i>x</i>² · <i>d</i>(sin <i>x</i>) + <span class="c-red">모서리</span>'},
+  {dur:5, set:{pdd:100}, cap:'dx를 줄이면 모서리는 dx²에 비례해서 빨리 사라지고, 두 띠만 남습니다.', line:'<i>df</i> ≈ sin <i>x</i> · 2<i>x</i> <i>dx</i> + <i>x</i>² · cos <i>x</i> <i>dx</i>'},
+  {dur:4.5, cap:'"왼쪽 곱하기 오른쪽의 미분, 더하기 오른쪽 곱하기 왼쪽의 미분"입니다.', line:'<i>df</i>/<i>dx</i> = sin <i>x</i> · 2<i>x</i> + <i>x</i>² · cos <i>x</i>'}
+];
+SCENES['f-chain']=[
+  {dur:4, cut:{chx:1.5,chd:PZ(0.3,0.001,0.1)}, cap:'sin(x²)을 세 줄로 봅니다. x를 넣으면 h = x²이 되고, 그 h를 sin에 넣습니다.', line:'<i>x</i> → <i>h</i> = <i>x</i>² → sin(<i>h</i>)'},
+  {dur:4.5, cap:'원문 예시처럼 x = 1.5에서 dx = 0.1만큼 움직이면 둘째 줄 h는 약 2x · dx만큼 움직입니다.', line:'<i>dh</i> ≈ 2<i>x</i> · <i>dx</i>'},
+  {dur:4.5, cap:'셋째 줄은 dh 때문에 움직이고, 그 변화는 cos(h) · dh입니다.', line:'<i>d</i>(sin <i>h</i>) ≈ cos(<i>h</i>) · <i>dh</i>'},
+  {dur:4.5, cap:'dh 자리에 2x · dx를 넣으면 두 배율을 곱한 것이 됩니다.', line:'<i>d</i>(sin <i>h</i>) ≈ cos(<i>x</i>²) · 2<i>x</i> · <i>dx</i>'},
+  {dur:5, set:{chd:100}, cap:'dx를 줄일수록 이 근사가 정확해집니다. 세 줄은 눈금이 서로 달라서, 막대 길이보다 옆의 배율을 보십시오.', line:v=>`<i>x</i> = 1.5 → cos(2.25) · 3 = ${n3(Math.cos(2.25)*3,4)}`},
+  {dur:4, cap:'바깥 함수의 미분(안쪽 값에서) × 안쪽 함수의 미분. 이것이 연쇄법칙입니다.', line:'<i>d</i>/<i>dx</i> sin(<i>x</i>²) = cos(<i>x</i>²) · 2<i>x</i>'}
+];
+
+/* ---------- 6장 ---------- */
+SCENES['f-const']=[
+  {dur:4, cut:{cna:2,cnd:PZ(1,0.00001,0.5)}, cap:'밑 a의 지수함수를 미분하면 자기 자신에 상수를 곱한 것이 나옵니다. 그 상수는 dt → 0일 때 [aᵈᵗ − 1] ÷ dt입니다.', line:'<i>d</i>(<i>a</i><sup><i>t</i></sup>)/<i>dt</i> = <i>a</i><sup><i>t</i></sup> · [ <i>a</i><sup><i>dt</i></sup> − 1 ] ÷ <i>dt</i>'},
+  {dur:4.5, set:{cnd:100}, cap:'밑 2에서 dt를 줄이면 주황 점이 초록 곡선 위, 약 0.6931에 붙습니다.', line:'밑 2 → 상수 ≈ 0.6931'},
+  {dur:4.5, set:{cna:8}, cap:'밑 8의 상수는 약 2.079로, 밑 2의 정확히 3배입니다(8 = 2³).', line:'밑 8 → 상수 ≈ 2.0794 = 3 × 0.6931'},
+  {dur:5, set:{cna:2.71828}, cap:'상수가 정확히 1이 되는 밑을 찾으면, 가로 점선과 만나는 곳, e = 2.71828…입니다.', line:v=>`밑 ${n3(v.cna,3)} → 상수 ${n3(Math.log(v.cna),4)}`}
+];
+SCENES['f-exp']=[
+  {dur:4, cut:{exa:2,ext:1}, cap:'2ᵗ 그래프의 한 점에서, 접선의 기울기를 그 점의 높이로 나눠 봅니다.', line:'기울기 ÷ 높이'},
+  {dur:4.5, set:{ext:-1}, cap:'점을 옮겨도 기울기 ÷ 높이는 늘 같은 값 0.6931입니다.', line:'밑 2 → 기울기 ÷ 높이 = 0.6931 (일정)'},
+  {dur:4.5, set:{exa:2.71828}, cap:'밑을 e로 바꾸면 이 값이 1이 됩니다.', line:'밑 <i>e</i> → 기울기 ÷ 높이 = 1'},
+  {dur:5, set:{ext:1.5}, cap:'eᵗ 위 어느 점에서든 접선의 기울기가 그 점의 높이와 같습니다.', line:'<i>d</i>(<i>e</i><sup><i>t</i></sup>)/<i>dt</i> = <i>e</i><sup><i>t</i></sup>'}
+];
+
+/* ---------- 7장 ---------- */
+SCENES['f-circ']=[
+  {dur:4, cut:{cph:3}, cap:'반지름 5인 원 x² + y² = 25 위의 점 (3, 4)에서 접선의 기울기를 구합니다.', line:'<i>x</i>² + <i>y</i>² = 5²'},
+  {dur:4.5, cap:'접선을 따라 작게 한 걸음(dx, dy) 내디뎌도 x² + y²은 변하지 않아야 합니다.', line:'2<i>x</i> · <i>dx</i> + 2<i>y</i> · <i>dy</i> = 0'},
+  {dur:4, cap:'정리하면 dy/dx = −x/y이고, (3, 4)에서는 −3/4입니다.', line:'<i>dy</i>/<i>dx</i> = −<i>x</i>/<i>y</i> = −3/4'},
+  {dur:6, set:{cph:-4}, cap:'점을 원 위에서 옮겨도 같은 식으로 기울기를 구할 수 있습니다.', line:v=>`(${n3(v.cph,2)}, ${n3(Math.sqrt(25-v.cph*v.cph),2)}) → −<i>x</i>/<i>y</i> = ${n3(-v.cph/Math.sqrt(25-v.cph*v.cph),3)}`}
+];
+SCENES['f-ladder']=[
+  {dur:4, cut:{ldt:0}, cap:'길이 5m 사다리의 꼭대기가 초속 1m로 미끄러져 내려갑니다. 처음에는 x = 3, y = 4입니다.', line:'<i>x</i>(<i>t</i>)² + <i>y</i>(<i>t</i>)² = 5²'},
+  {dur:4.5, cap:'양변을 t로 미분하면 두 변화율이 한 식으로 묶입니다.', line:'2<i>x</i> · <i>dx</i>/<i>dt</i> + 2<i>y</i> · <i>dy</i>/<i>dt</i> = 0'},
+  {dur:4, cap:'처음 순간 dy/dt = −1을 넣으면 아래쪽이 멀어지는 속도는 4/3 m/s입니다.', line:'2·3·<i>dx</i>/<i>dt</i> + 2·4·(−1) = 0 → <i>dx</i>/<i>dt</i> = 4/3'},
+  {dur:7, set:{ldt:3}, cap:'시간이 흐르면 꼭대기는 늘 초속 1m로 내려가지만, 아래쪽 속도는 꼭대기가 낮아질수록 느려집니다.', line:v=>{const y=4-v.ldt,x=Math.sqrt(25-y*y);return `<i>t</i> = ${n3(v.ldt,2)}초 → <i>dx</i>/<i>dt</i> = ${n3(y/x,3)} m/s`;}}
+];
+SCENES['f-field']=[
+  {dur:4.5, cut:{fda:206.57,fdl:71.72}, cap:'S(x, y) = x² + y²을 평면 위의 값으로 봅니다. 원문 예시처럼 (3, 4)에서 (−0.02, −0.01)만큼 걸어 봅니다.', line:'<i>dS</i> ≈ 2<i>x</i> · <i>dx</i> + 2<i>y</i> · <i>dy</i> = −0.2'},
+  {dur:5, set:{fda:53.13}, cap:'원 바깥쪽으로 걸으면 S가 커져서 dS가 양수입니다.', line:'바깥쪽 → <i>dS</i> &gt; 0'},
+  {dur:5, set:{fda:143.13}, cap:'원을 따라 접선 방향으로 걸으면 dS가 0에 가깝습니다. 이 조건이 음함수 미분의 식입니다.', line:'접선 방향 → <i>dS</i> ≈ 0 → 2<i>x</i> · <i>dx</i> + 2<i>y</i> · <i>dy</i> = 0'},
+  {dur:5, set:{fda:233.13}, cap:'안쪽으로 걸으면 dS가 음수입니다.', line:'안쪽 → <i>dS</i> &lt; 0'}
+];
+
+/* ---------- 8장 ---------- */
+SCENES['f-zoom']=[
+  {dur:4, cut:{zmv:0}, cap:`eˣ 그래프의 x = 0 부근을 봅니다. 이 배율에서는 곡선이 기울기 1인 점선에서 벗어나 있습니다(${bc('amber','주황 틈')}).`, hl:(v,lv,op)=>{const X0=40,X1=400,Y0=260,Y1=20,W=2/Math.pow(10,v.zmv/100*3),P_=(X1-X0)/(2*W),px=x=>X0+(x+W)*P_,py=y=>(Y0+Y1)/2-(y-1)*P_;let d=`M${px(-W)} ${py(1-W)}`;for(let i=0;i<=80;i++){const x=-W+2*W*i/80;d+=`L${px(x)} ${py(Math.exp(x))}`;}d+=`L${px(W)} ${py(1+W)}Z`;return `<defs><clipPath id="hlz"><rect x="${X0}" y="${Y1}" width="${X1-X0}" height="${Y0-Y1}"/></clipPath></defs><g clip-path="url(#hlz)">`+hFill(d,'amber',op,0.45)+'</g>';}, line:'<i>f</i>(<i>x</i>) = <i>e</i><sup><i>x</i></sup>'},
+  {dur:6, set:{zmv:100}, blink:false, cap:`점점 확대하면 ${bc('amber','틈')}이 사라져 곡선이 직선처럼 보이고, 양 끝을 잇는 기울기가 1에 다가갑니다.`, hl:(v,lv,op)=>{const X0=40,X1=400,Y0=260,Y1=20,W=2/Math.pow(10,v.zmv/100*3),P_=(X1-X0)/(2*W),px=x=>X0+(x+W)*P_,py=y=>(Y0+Y1)/2-(y-1)*P_;let d=`M${px(-W)} ${py(1-W)}`;for(let i=0;i<=80;i++){const x=-W+2*W*i/80;d+=`L${px(x)} ${py(Math.exp(x))}`;}d+=`L${px(W)} ${py(1+W)}Z`;return `<defs><clipPath id="hlz"><rect x="${X0}" y="${Y1}" width="${X1-X0}" height="${Y0-Y1}"/></clipPath></defs><g clip-path="url(#hlz)">`+hFill(d,'amber',op,0.45)+'</g>';}, line:v=>{const W=2/Math.pow(10,v.zmv/100*3);return `범위 ±${n3(W,W<0.01?4:3)} → 기울기 ${n3((Math.exp(W)-Math.exp(-W))/(2*W),6)}`;}},
+  {dur:4.5, cap:'h를 0에 보낼 때 다가가는 이 값이 x = 0에서의 도함수입니다.', line:'<i>df</i>/<i>dx</i>(0) = lim<sub><i>h</i>→0</sub> [ <i>f</i>(0 + <i>h</i>) − <i>f</i>(0) ] ÷ <i>h</i> = 1'}
+];
+
+/* ---------- 9장 ---------- */
+SCENES['f-eps']=[
+  {dur:4.5, click:'#ep-cont', cut:{epe:PZ(3,0.001,0.5),epd:PZ(1,0.0001,0.5)}, cap:'12 + 6h + h²은 h → 0에서 12에 다가갑니다. 먼저 출력의 허용 범위 ε(빨간 띠)을 정합니다.', line:'|<i>f</i>(<i>h</i>) − 12| &lt; ε'},
+  {dur:5, set:{epd:PZ(1,0.0001,0.05)}, cap:'입력 범위 δ(파랑)를 줄이면, 그 안의 모든 출력이 빨간 띠 안에 들어옵니다.', line:'0 &lt; |<i>h</i>| &lt; δ 이면 성공'},
+  {dur:5, set:{epe:PZ(3,0.001,0.006),epd:PZ(1,0.0001,0.0009)}, cap:'ε을 아무리 작게 정해도 맞는 δ가 있으면, 극한은 12입니다.', line:'모든 ε &gt; 0에 대해 δ가 있음 → 극한 = 12'},
+  {dur:4.5, click:'#ep-jump', cut:{epe:PZ(3,0.001,0.4),epd:PZ(1,0.0001,0.3)}, cap:'점프가 있는 함수로 바꿉니다. ε = 0.4로 정합니다.', line:'점프 폭 1, ε = 0.4', clear:true},
+  {dur:5, set:{epd:PZ(1,0.0001,0.0002)}, cap:'δ를 아무리 줄여도 한쪽 출력이 띠 밖에 남습니다. 이런 점에서는 극한이 없습니다.', line:'어떤 δ도 실패 → 극한 없음'}
+];
+
+/* ---------- 10장 ---------- */
+SCENES['f-lh']=[
+  {dur:4, cut:{lhd:0}, cap:'sin(πx) ÷ (x² − 1)은 x = 1에서 0 ÷ 0이 되어 바로 계산할 수 없습니다.', line:'sin(π<i>x</i>) ÷ (<i>x</i>² − 1), <i>x</i> = 1 → 0/0'},
+  {dur:4.5, cap:'x = 1 근처에서 분자와 분모는 각각 거의 직선입니다. 1 + dx에서 분자 ≈ −π · dx, 분모 ≈ 2 · dx입니다.', line:'분자 ≈ −π · <i>dx</i>, 분모 ≈ 2 · <i>dx</i>'},
+  {dur:5.5, set:{lhd:100}, cap:'dx를 줄이면 비율이 −π/2에 다가갑니다.', line:(v,lv)=>{const d=lv('lhd',0.5,0.00001);return `<i>dx</i> = ${n3(d,d<0.001?5:3)} → ${n3(Math.sin(Math.PI*(1+d))/((1+d)**2-1),5)}`;}},
+  {dur:4, cap:'0/0 꼴의 극한은 분자와 분모를 각각 미분한 값의 비율로 구합니다. 이것이 로피탈 정리입니다.', line:'lim = <i>f</i>′(1)/<i>g</i>′(1) = −π/2'}
+];
+
+/* ---------- 11장 ---------- */
+SCENES['f-riem']=[
+  {dur:4, cut:{rmd:PZ(2,0.01,1),rmt:8}, cap:'속도 v(t) = t(8 − t)로 8초 동안 달린 거리를 구합니다. 시간을 dt로 잘라 막대로 근사합니다.', line:'거리 ≈ Σ <i>v</i>(<i>t</i>) · <i>dt</i>'},
+  {dur:5, set:{rmd:100}, cap:'dt를 줄이면 막대 넓이의 합이 곡선 아래 넓이에 붙습니다.', line:(v,lv)=>`<i>dt</i> = ${n3(lv('rmd',2,0.01),2)}`},
+  {dur:3.5, cap:'곡선 아래 넓이는 약 85.33m입니다.', line:'∫<sub>0</sub><sup>8</sup> <i>t</i>(8 − <i>t</i>) <i>dt</i> ≈ 85.33'},
+  {dur:5.5, set:{rmt:3}, cap:'끝 시간 T를 옮기면, 0부터 T까지의 넓이가 곧 간 거리 s(T)입니다. 그래서 넓이 함수를 미분하면 v(T)입니다.', line:v=>`<i>T</i> = ${n3(v.rmt,2)} → <i>s</i>(<i>T</i>) = 4<i>T</i>² − <i>T</i>³/3 = ${n3(4*v.rmt**2-v.rmt**3/3,2)}`}
+];
+
+/* ---------- 12장 ---------- */
+SCENES['f-avg']=[
+  {dur:4, cut:{avn:2}, cap:'0부터 π까지 sin x의 평균 높이를 구합니다. 먼저 표본 몇 개의 평균을 냅니다.', line:'평균 ≈ (표본들의 합) ÷ 개수'},
+  {dur:6, set:{avn:80}, cap:'표본을 늘리면 평균이 한 값에 붙습니다.', line:v=>`표본 ${n3(v.avn,0)}개`},
+  {dur:4.5, cap:'그 값은 넓이 ÷ 폭 = 2/π입니다. 아래 −cos x의 양 끝을 잇는 선의 기울기와 같습니다.', line:'평균 = ∫<sub>0</sub><sup>π</sup> sin <i>x</i> <i>dx</i> ÷ π = 2/π ≈ 0.6366'}
+];
+
+/* ---------- 13장 ---------- */
+SCENES['f-hod']=[
+  {dur:4.5, cut:{hox:1}, cap:'x = 1에서 기울기는 −2의 비율로 줄고 있습니다. 2계 도함수가 −2입니다.', line:'<i>f</i>″(1) = −2 : 아래로 휨 (기울기 감소)'},
+  {dur:5, set:{hox:2}, cap:'x = 2에서는 기울기가 변하지 않습니다. 2계 도함수가 0입니다.', line:'<i>f</i>″(2) = 0'},
+  {dur:5, set:{hox:3}, cap:'x = 3에서는 기울기가 2의 비율로 커집니다.', line:'<i>f</i>″(3) = 2 : 위로 휨 (기울기 증가)'},
+  {dur:4, cap:'2계 도함수는 "기울기가 얼마나 빨리 변하는가"입니다. 그래프에서는 휘는 정도로 보입니다.', line:'<i>f</i>″ = 기울기의 변화율'}
+];
+
+/* ---------- 14장 ---------- */
+const TYG=(()=>{const X0=50,X1=420,Y0=270,fact=n=>{let r=1;for(let i=2;i<=n;i++)r*=i;return r;};
+  const TF={cos:{f:Math.cos,a:0,xa:-7,xb:7,ya:-2.5,yb:2.5,c:k=>[1,0,-1,0][k%4]},exp:{f:Math.exp,a:0,xa:-4,xb:3,ya:-2,yb:12,c:k=>1},ln:{f:Math.log,a:1,xa:0.02,xb:3.6,ya:-3,yb:2.5,c:k=>k===0?0:(k%2?1:-1)*fact(k-1)}};
+  return (key,v,op)=>{const S=TF[key],n=Math.round(v.tyn),P=x=>{let s=0;for(let k=0;k<=n;k++)s+=S.c(k)/fact(k)*Math.pow(x-S.a,k);return s;},px=x=>X0+(x-S.xa)/(S.xb-S.xa)*(X1-X0),tol=(S.yb-S.ya)*0.01;
+    let s='',run=null;for(let i=0;i<=300;i++){const x=S.xa+(S.xb-S.xa)*i/300,ok=Math.abs(P(x)-S.f(x))<tol;if(ok&&run===null)run=x;if((!ok||i===300)&&run!==null){s+=hBox(px(run),Y0-7,Math.max(2,px(x)-px(run)),7,'green',op,0.6);run=null;}}return s;};})();
+
+SCENES['f-tay']=[
+  {dur:4, click:'[data-tf="cos"]', cut:{tyn:0,tyx:60}, cap:'cos x를 x = 0 근처에서 다항식으로 흉내 냅니다. 0차는 값만 맞춘 상수 1입니다.', line:'<i>P</i><sub>0</sub>(<i>x</i>) = 1'},
+  {dur:3.5, cut:{tyn:2}, cap:'2차 항을 더하면 x = 0에서 기울기와 휘는 정도까지 맞습니다.', line:'<i>P</i><sub>2</sub>(<i>x</i>) = 1 − <i>x</i>²/2'},
+  {dur:6, set:{tyn:16}, blink:false, hl:(v,lv,op)=>TYG('cos',v,op), cap:`항을 늘릴수록 점점 넓은 범위에서 cos x에 달라붙습니다. 가로축의 ${bc('green','초록 띠')}가 두 곡선이 거의 같은 범위입니다.`, line:v=>`${n3(v.tyn,0)}차 다항식`},
+  {dur:4, click:'[data-tf="exp"]', cut:{tyn:1,tyx:80}, cap:'eˣ도 같습니다. 모든 계수가 1/n!이고, 항을 늘리면 달라붙습니다.', line:'<i>e</i><sup><i>x</i></sup> ≈ 1 + <i>x</i> + <i>x</i>²/2! + <i>x</i>³/3! + …', clear:true},
+  {dur:5, set:{tyn:12}, blink:false, hl:(v,lv,op)=>TYG('exp',v,op), cap:`eˣ의 급수는 모든 x에서 수렴합니다. ${bc('green','초록 띠')}가 계속 넓어집니다.`, line:v=>`${n3(v.tyn,0)}차 다항식`},
+  {dur:4, click:'[data-tf="ln"]', cut:{tyn:2,tyx:75}, cap:'ln x를 x = 1 근처에서 흉내 내 봅니다.', line:'ln <i>x</i> (<i>a</i> = 1)', clear:true},
+  {dur:6, set:{tyn:16}, blink:false, hl:(v,lv,op)=>TYG('ln',v,op), cap:'x = 2를 넘어가는 곳에서는 항을 늘릴수록 오히려 크게 벗어납니다. 수렴 반지름이 1입니다.', line:v=>`${n3(v.tyn,0)}차 다항식 → <i>x</i> &gt; 2에서 발산`}
+];
+
+/* ---------- 15장 ---------- */
+SCENES['f-tgeo']=[
+  {dur:4, cut:{tgx:1.5}, cap:'f(x)는 고정된 왼쪽 끝부터 x까지 그래프 아래 넓이입니다. a까지의 넓이 f(a)(파랑)에서 출발합니다.', line:'<i>f</i>(<i>a</i>)'},
+  {dur:5, set:{tgx:2.6}, cap:'x를 a에서 옮기면, 늘어난 넓이는 대부분 직사각형(주황)입니다. 높이는 그래프 높이 f′(a)입니다.', line:'+ <i>f</i> ′(<i>a</i>)(<i>x</i> − <i>a</i>)'},
+  {dur:4.5, cap:'위쪽의 거의 삼각형인 조각(보라)은 밑변 x − a, 높이 f″(a)(x − a)라서 넓이가 ½ f″(a)(x − a)²입니다.', line:'+ ½ <i>f</i> ″(<i>a</i>)(<i>x</i> − <i>a</i>)²'},
+  {dur:4.5, cap:'근사와 실제 넓이의 차이는 빨간 조각뿐입니다. 각 항이 그림에서 가리킬 수 있는 조각입니다.', line:v=>`<i>x</i> − <i>a</i> = ${n3(v.tgx-1.5,2)} → 오차 = 빨간 조각`},
+  {dur:5, set:{tgx:1.8}, cap:'x가 a에 가까울수록 빨간 조각은 빨리 작아집니다.'}
+];
+
+/* ---------- 16장 ---------- */
+SCENES['f-tr']=[
+  {dur:4, cut:{trx:1,trw:PZ(1,0.01,0.6)}, cap:'f(x) = x²을 그래프 대신 "위 수직선의 점을 아래 수직선으로 옮기는 변환"으로 봅니다.', line:'<i>x</i> ↦ <i>x</i>²'},
+  {dur:5, set:{trw:100}, cap:'x = 1 주변의 점들을 좁게 모으면, 옮겨진 뒤 점들 사이 간격은 약 2배로 벌어집니다.', line:'간격 비율 → 2<i>x</i> = 2'},
+  {dur:5, set:{trx:2}, cap:'x = 2 주변에서는 4배로 늘어납니다. 도함수는 이 "늘어나는 비율"입니다.', line:v=>`<i>x</i> = ${n3(v.trx,2)} → 2<i>x</i> = ${n3(2*v.trx,2)}`},
+  {dur:5.5, set:{trx:-1.5}, cap:'음수 입력에서는 비율이 음수라서 점들의 순서가 뒤집힙니다.'}
+];
+SCENES['f-fix']=[
+  {dur:4, cut:{fxs:1,fxk:0}, cap:'f(x) = 1 + 1/x를 계속 반복해서 적용합니다.', line:'<i>x</i> ↦ 1 + 1/<i>x</i>'},
+  {dur:5, set:{fxk:12}, cap:'1에서 시작하면 값이 φ = 1.618…로 모입니다. f(φ) = φ인 고정점입니다.', line:'1 → 2 → 1.5 → 1.667 → … → φ'},
+  {dur:3.5, cut:{fxs:-0.617,fxk:0}, cap:'고정점은 하나 더 있습니다. −0.618 바로 옆에서 시작해 봅니다.', line:'또 다른 고정점 −1/φ ≈ −0.618', clear:true},
+  {dur:6, set:{fxk:30}, cap:'−0.618 바로 옆에서 시작해도 점점 멀어져 결국 1.618로 갑니다.', line:'−0.618은 불안정, 1.618은 안정'},
+  {dur:4.5, cap:'고정점에서 도함수의 크기가 1보다 작으면 이웃을 끌어당기고(안정), 1보다 크면 밀어냅니다(불안정).', line:'|<i>f</i>′(φ)| ≈ 0.38 &lt; 1, |<i>f</i>′(−1/φ)| ≈ 2.6 &gt; 1'}
+];
+
+initScenes();
+})();
+</script>
 </body>
 </html>
