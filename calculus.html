@@ -240,7 +240,7 @@ figure.fig.sc .ctrl, figure.fig.sc .btns{display:none}
   <h3>쪼개기</h3>
   <p class="ask">원의 넓이가 왜 πR²일까요?</p>
   <p>정확한 값은 일단 잊고, 어림잡는 것부터 시작합니다. 넓이를 구하기 쉬운 작은 조각으로 원을 나누고, 조각들을 더하는 방법입니다.</p>
-  <p>나누는 방법은 여러 가지인데, 원문은 원의 대칭을 살려 <b>양파처럼 동심원 고리</b>로 자릅니다. 반지름은 1로 두고, 고리 하나의 두께를 <span class="m c-amber">dr</span>이라고 부르겠습니다. 예를 들어 dr = 0.1입니다.</p>
+  <p>나누는 방법은 여러 가지인데, 원문은 원의 대칭을 살려 <b>양파처럼 동심원 고리</b>로 자릅니다. 반지름은 1로 두고, 고리 하나의 두께를 <span class="m c-amber">dr</span>(디 알)이라고 부르겠습니다. 예를 들어 dr = 0.1입니다.</p>
   <figure class="fig mini">
     <svg viewBox="0 0 640 200" role="img" aria-label="원을 동심원 고리로 자른 그림"><circle cx="250" cy="100" r="85.0" style="fill:color-mix(in srgb,var(--blue) 15%,var(--paper));stroke:var(--paper);stroke-width:1"/><circle cx="250" cy="100" r="74.4" style="fill:color-mix(in srgb,var(--blue) 30%,var(--paper));stroke:var(--paper);stroke-width:1"/><circle cx="250" cy="100" r="63.8" style="fill:color-mix(in srgb,var(--blue) 15%,var(--paper));stroke:var(--paper);stroke-width:1"/><circle cx="250" cy="100" r="53.1" style="fill:var(--amber);stroke:var(--paper);stroke-width:1"/><circle cx="250" cy="100" r="42.5" style="fill:color-mix(in srgb,var(--blue) 15%,var(--paper));stroke:var(--paper);stroke-width:1"/><circle cx="250" cy="100" r="31.9" style="fill:color-mix(in srgb,var(--blue) 30%,var(--paper));stroke:var(--paper);stroke-width:1"/><circle cx="250" cy="100" r="21.2" style="fill:color-mix(in srgb,var(--blue) 15%,var(--paper));stroke:var(--paper);stroke-width:1"/><circle cx="250" cy="100" r="10.6" style="fill:color-mix(in srgb,var(--blue) 30%,var(--paper));stroke:var(--paper);stroke-width:1"/><line x1="250.0" y1="100.0" x2="165.0" y2="100.0" style="stroke:var(--ink);stroke-width:1" /><text x="157.0" y="104.0" class="svgt" text-anchor="end" style="fill:var(--ink2);font-size:13px">반지름 1</text><line x1="280.0" y1="130.0" x2="400.0" y2="170.0" style="stroke:var(--ink2);stroke-width:1" /><text x="406.0" y="174.0" class="svgt" text-anchor="start" style="fill:var(--amber);font-size:13px">이 고리의 두께 = dr</text><text x="406.0" y="194.0" class="svgt" text-anchor="start" style="fill:var(--ink2);font-size:13px">안쪽 반지름 = r</text></svg>
     <figcaption>원을 동심원 고리로 자른 모습. 고리 하나(주황)의 두께가 dr, 안쪽 반지름이 r입니다.</figcaption>
@@ -298,11 +298,11 @@ figure.fig.sc .ctrl, figure.fig.sc .btns{display:none}
     원은 길이 × 길이라서 우연히 진짜 넓이였던 것입니다.</aside>
   <p>그래서 이제 궁금해지는 건 "다른 그래프 아래 넓이는 어떻게 구하지?"입니다. 원은 운 좋게 삼각형이었지만, <span class="m c-blue">x²</span> 같은 곡선은 그렇지 않기 때문입니다.</p>
   <p>원문은 문제를 이렇게 바꿉니다. 왼쪽 끝은 0에 고정하고, 오른쪽 끝 x를 움직일 때의 넓이를 함수 <span class="m">A(x)</span>로 둡니다. 이 <span class="m">A(x)</span>를 x²의 <b>적분</b>이라고 부릅니다.</p>
-  <p>기호로는 <span class="m">A(x) = ∫<sub>0</sub><sup>x</sup> t² dt</span> 로 씁니다. "t²을 0부터 x까지 적분한다"는 뜻입니다(끝점 x와 헷갈리지 않게 그래프 쪽 변수를 t로 씁니다). ∫는 합(Sum)의 S를 길게 늘인 모양에서 왔습니다. "잘게 쪼개서 더한다"는 뜻이 기호에 들어 있는 셈입니다.</p>
+  <p>기호로는 <span class="m">A(x) = ∫<sub>0</sub><sup>x</sup> t² dt</span> 로 씁니다. "t²을 0부터 x까지 적분한다"는 뜻입니다(끝점 x와 헷갈리지 않게 그래프 쪽 변수를 t로 씁니다). ∫는 "인테그럴"이라고 읽고, 합(Sum)의 S를 길게 늘인 모양에서 왔습니다. "잘게 쪼개서 더한다"는 뜻이 기호에 들어 있는 셈입니다.</p>
 
   <h3>미분</h3>
   <p class="ask">A(x)를 바로 구하긴 어려워요. 그럼 x를 살짝 늘려 보면 어떨까요?</p>
-  <p>x를 <span class="m c-amber">dx</span>만큼 늘리면 넓이가 가느다란 띠만큼 늘어납니다. 이 늘어난 넓이를 <span class="m c-amber">dA</span>라고 합니다. 띠는 높이 x², 폭 dx인 직사각형과 거의 같습니다.</p>
+  <p>x를 <span class="m c-amber">dx</span>(디 엑스)만큼 늘리면 넓이가 가느다란 띠만큼 늘어납니다. 이 늘어난 넓이를 <span class="m c-amber">dA</span>라고 합니다. 띠는 높이 x², 폭 dx인 직사각형과 거의 같습니다.</p>
   <div class="eq"><span class="c-amber"><i>dA</i></span> ≈ <i>x</i>² · <span class="c-amber"><i>dx</i></span> &nbsp;&nbsp;⟹&nbsp;&nbsp; <span class="c-green"><i>dA</i> / <i>dx</i></span> ≈ <i>x</i>²</div>
   <p class="try"><b>재생해 보기:</b> 원문 예시처럼 x = 3에서 dx를 0.001까지 줄이면 dA ÷ dx가 3² = 9에 붙는 과정을 봅니다.</p>
   <figure class="fig" id="f-area">
@@ -792,7 +792,7 @@ figure.fig.sc .ctrl, figure.fig.sc .btns{display:none}
 
   <h3>자연로그</h3>
   <p class="ask">그 비례 상수는 어떤 수일까요?</p>
-  <p>"e의 몇 제곱이 2인가?"라는 질문에 답하는 함수가 <b>자연로그</b> <span class="m">ln</span>입니다. 지수함수 eˣ의 역함수입니다. 계산기로 ln 2를 구하면 0.6931…로, 앞에서 찾은 비례 상수와 같습니다. 다른 밑도 마찬가지로, 비례 상수는 항상 <b>ln(밑)</b>입니다. ln 3 ≈ 1.0986, ln 8 = 3 ln 2 ≈ 2.079입니다.</p>
+  <p>"e의 몇 제곱이 2인가?"라는 질문에 답하는 함수가 <b>자연로그</b> <span class="m">ln</span>(엘엔)입니다. 지수함수 eˣ의 역함수입니다. 계산기로 ln 2를 구하면 0.6931…로, 앞에서 찾은 비례 상수와 같습니다. 다른 밑도 마찬가지로, 비례 상수는 항상 <b>ln(밑)</b>입니다. ln 3 ≈ 1.0986, ln 8 = 3 ln 2 ≈ 2.079입니다.</p>
   <p>이제 어떤 지수함수든 미분할 수 있습니다. 먼저 e를 밑으로 다시 쓰고, 5장의 연쇄법칙을 씁니다. 예를 들어 3ᵗ은 이렇게 됩니다.</p>
   <div class="eq">3<sup><i>t</i></sup> = <i>e</i><sup>ln(3) · <i>t</i></sup> &nbsp;⟹&nbsp; <span class="frac "><span><i>d</i></span><span><i>dt</i></span></span>( <i>e</i><sup>ln(3) · <i>t</i></sup> ) = <i>e</i><sup>ln(3) · <i>t</i></sup> · ln(3)</div>
   <p>바깥 함수 eˣ의 미분은 자기 자신이고, 안쪽 함수 ln(3) · t의 미분은 상수 ln(3)이기 때문입니다. 일반적으로는 이렇게 됩니다.</p>
@@ -924,7 +924,7 @@ figure.fig.sc .ctrl, figure.fig.sc .btns{display:none}
   <h3>도함수의 정식 정의</h3>
   <p class="ask">교과서는 도함수를 어떻게 쓰나요?</p>
   <p>함수 f(x)의 x = 2에서의 도함수를 생각합니다. 입력을 dx만큼 밀고 출력의 변화 df를 봅니다. 비율 df/dx는 그래프 위 시작점과 밀린 점 사이의 기울기이고, 도함수는 <b>dx가 0에 다가갈 때 이 비율이 다가가는 값</b>입니다. 여기서 df는 f(2 + dx) − f(2)입니다.</p>
-  <p>"dx가 0에 다가갈 때 다가가는 값"을 나타내려고 <b>lim</b>(limit)을 쓰고, 그 아래에 "dx → 0"을 적습니다. 다만 lim 안에서는 소문자 d를 거의 쓰지 않고, 보통 <span class="m">Δx</span>나 <span class="m">h</span>를 씁니다.</p>
+  <p>"dx가 0에 다가갈 때 다가가는 값"을 나타내려고 <b>lim</b>(limit, 리밋)을 쓰고, 그 아래에 "dx → 0"을 적습니다. 다만 lim 안에서는 소문자 d를 거의 쓰지 않고, 보통 <span class="m">Δx</span>나 <span class="m">h</span>를 씁니다.</p>
   <div class="eq"><span class="frac c-green"><span><i>df</i></span><span><i>dx</i></span></span>(2) = lim<sub><i>h</i> → 0</sub> <span class="frac "><span><i>f</i>(2 + <i>h</i>) − <i>f</i>(2)</span><span><i>h</i></span></span></div>
   <p>원문의 해석은 이렇습니다. 소문자 d가 붙은 항에는 <b>"결국 0에 보낸다"는 극한의 뜻이 이미 들어 있다</b>. 그래서 왼쪽 df/dx는 오른쪽을 줄여 쓴 것이고, 오른쪽이 교과서의 정식 정의입니다.</p>
   <p class="try"><b>재생해 보기:</b> eˣ 그래프의 x = 0 부근을 점점 확대합니다. 곡선이 직선처럼 보이고, 그 기울기가 1에 가까워집니다.</p>
@@ -1327,7 +1327,7 @@ figure.fig.sc .ctrl, figure.fig.sc .btns{display:none}
 
   <h3>무한 분수</h3>
   <p class="ask">1 + 1/(1 + 1/(1 + ⋯))의 값은 무엇일까요?</p>
-  <p>흔한 풀이는 전체를 x로 두는 것입니다. 안에 자기 자신이 들어 있으니 <span class="m">x = 1 + 1/x</span>이고, 이는 함수 f(x) = 1 + 1/x의 <b>고정점</b>(넣으면 자기 자신이 나오는 점)을 찾는 것과 같습니다. 그런데 해가 두 개입니다. 황금비 <b>φ ≈ 1.618</b>과, <b>−1/φ ≈ −0.618</b>입니다. 원문은 후자를 φ의 "동생"이라 부릅니다.</p>
+  <p>흔한 풀이는 전체를 x로 두는 것입니다. 안에 자기 자신이 들어 있으니 <span class="m">x = 1 + 1/x</span>이고, 이는 함수 f(x) = 1 + 1/x의 <b>고정점</b>(넣으면 자기 자신이 나오는 점)을 찾는 것과 같습니다. 그런데 해가 두 개입니다. 황금비 <b>φ(파이) ≈ 1.618</b>과, <b>−1/φ ≈ −0.618</b>입니다. 원문은 후자를 φ의 "동생"이라 부릅니다.</p>
   <p>이 식을 "어떤 수에서 시작해 1 + 1/x를 계속 적용했을 때 다가가는 값"으로 보면, −1/φ에서 시작하면 계속 −1/φ에 머뭅니다. 그런데 계산기로 아무 수에서나 시작해 반복하면, 음수에서 시작하든 −0.618 바로 옆에서 시작하든 결국 <b>1.618</b>로 갑니다. 왜 한쪽만 선호될까요?</p>
   <p>교과서는 흔히 그래프와 y = x 사이를 오가는 거미줄 그림으로 설명하지만, 원문은 이 방식이 매번 선을 어느 쪽으로 그을지 떠올려야 해서 어색하다고 말합니다. 변환 관점으로 보면 이유를 알 수 있습니다.</p>
 
@@ -1376,24 +1376,24 @@ figure.fig.sc .ctrl, figure.fig.sc .btns{display:none}
     <tr><td>극한</td><td>dx를 0에 가깝게 할 때 값이 다가가는 곳</td><td><a href="#ch2">2</a></td></tr>
     <tr><td>거듭제곱 법칙</td><td>xⁿ의 미분은 n·xⁿ⁻¹</td><td><a href="#ch3">3</a></td></tr>
     <tr><td>빗변 · 맞은편 변 · 이웃변</td><td>직각삼각형에서 직각의 맞은편 가장 긴 변 · 각 θ와 마주 보는 변 · 각 θ에 붙은 나머지 변</td><td><a href="#ch4">4</a></td></tr>
-    <tr><td>사인 sin</td><td>sin θ = 맞은편 변 ÷ 빗변. 단위원에서는 점의 높이</td><td><a href="#ch4">4</a></td></tr>
-    <tr><td>코사인 cos</td><td>cos θ = 이웃변 ÷ 빗변. 단위원에서는 점의 가로 위치</td><td><a href="#ch4">4</a></td></tr>
+    <tr><td>사인 sin (사인)</td><td>sin θ = 맞은편 변 ÷ 빗변. 단위원에서는 점의 높이</td><td><a href="#ch4">4</a></td></tr>
+    <tr><td>코사인 cos (코사인)</td><td>cos θ = 이웃변 ÷ 빗변. 단위원에서는 점의 가로 위치</td><td><a href="#ch4">4</a></td></tr>
     <tr><td>단위원</td><td>반지름이 1인 원</td><td><a href="#ch4">4</a></td></tr>
-    <tr><td>라디안</td><td>단위원 위에서 걸은 호의 길이로 잰 각도. 180° = π</td><td><a href="#ch4">4</a></td></tr>
+    <tr><td>라디안 (radian)</td><td>단위원 위에서 걸은 호의 길이로 잰 각도. 180° = π</td><td><a href="#ch4">4</a></td></tr>
     <tr><td>합성</td><td>한 함수의 출력을 다른 함수의 입력으로 넣는 것. 예: sin(x²)</td><td><a href="#ch5">5</a></td></tr>
     <tr><td>합의 법칙</td><td>합의 미분 = 각 미분의 합</td><td><a href="#ch5">5</a></td></tr>
     <tr><td>곱의 법칙</td><td>(g·h)′ = g·h′ + h·g′. "왼 d 오 + 오 d 왼"</td><td><a href="#ch5">5</a></td></tr>
     <tr><td>연쇄법칙</td><td>g(h(x))의 미분 = g′(h(x)) · h′(x). 바깥 미분 × 안쪽 미분</td><td><a href="#ch5">5</a></td></tr>
     <tr><td>지수함수</td><td>aᵗ 꼴의 함수. 특히 밑이 e인 eᵗ를 그냥 "지수함수"라고 부르기도 함</td><td><a href="#ch6">6</a></td></tr>
-    <tr><td>오일러 수 e</td><td>약 2.71828. eᵗ의 미분이 자기 자신이 되게 하는 유일한 밑</td><td><a href="#ch6">6</a></td></tr>
-    <tr><td>자연로그 ln</td><td>"e의 몇 제곱이 a인가"의 답. eˣ의 역함수</td><td><a href="#ch6">6</a></td></tr>
+    <tr><td>오일러 수 e (이)</td><td>약 2.71828. eᵗ의 미분이 자기 자신이 되게 하는 유일한 밑</td><td><a href="#ch6">6</a></td></tr>
+    <tr><td>자연로그 ln (엘엔)</td><td>"e의 몇 제곱이 a인가"의 답. eˣ의 역함수</td><td><a href="#ch6">6</a></td></tr>
     <tr><td>음함수 곡선</td><td>x와 y가 식 하나로 묶인 점들의 모임. 함수의 그래프가 아닐 수 있음</td><td><a href="#ch7">7</a></td></tr>
     <tr><td>음함수 미분</td><td>작은 걸음에 대해 양변의 변화량을 같게 놓아 dy/dx를 구하는 방법</td><td><a href="#ch7">7</a></td></tr>
     <tr><td>관련 변화율</td><td>식으로 묶인 두 양의 변화율 사이 관계. 예: 사다리 문제</td><td><a href="#ch7">7</a></td></tr>
     <tr><td>다변수 함수</td><td>입력이 여러 개인 함수. 예: S(x, y) = x² + y²</td><td><a href="#ch7">7</a></td></tr>
     <tr><td>극한</td><td>입력이 어떤 값에 다가갈 때 출력이 다가가는 값</td><td><a href="#ch8">8</a></td></tr>
-    <tr><td>엡실론-델타 정의</td><td>어떤 ε &gt; 0에도, 거리 δ 안의 입력이 모두 극한값에서 ε 안의 출력을 내는 δ가 있다</td><td><a href="#ch9">9</a></td></tr>
-    <tr><td>로피탈 정리</td><td>f(a) = g(a) = 0이면 lim f/g = f′(a)/g′(a)</td><td><a href="#ch10">10</a></td></tr>
+    <tr><td>엡실론-델타 정의 (ε-δ)</td><td>어떤 ε &gt; 0에도, 거리 δ 안의 입력이 모두 극한값에서 ε 안의 출력을 내는 δ가 있다</td><td><a href="#ch9">9</a></td></tr>
+    <tr><td>로피탈 정리 (L'Hôpital, 로피탈)</td><td>f(a) = g(a) = 0이면 lim f/g = f′(a)/g′(a)</td><td><a href="#ch10">10</a></td></tr>
     <tr><td>역도함수</td><td>도함수가 주어진 함수가 되는 함수. + C만큼 여러 개</td><td><a href="#ch11">11</a></td></tr>
     <tr><td>미적분의 기본정리</td><td>∫ₐᵇ f(x)dx = F(b) − F(a), F는 f의 역도함수</td><td><a href="#ch11">11</a></td></tr>
     <tr><td>부호 있는 넓이</td><td>가로축 아래 넓이를 음수로 세는 넓이. 적분이 재는 것</td><td><a href="#ch11">11</a></td></tr>
@@ -1408,33 +1408,34 @@ figure.fig.sc .ctrl, figure.fig.sc .btns{display:none}
     <tr><td>고정점 · 안정성</td><td>f(x) = x인 점. |f′| &lt; 1이면 안정, &gt; 1이면 불안정</td><td><a href="#ch16">16</a></td></tr>
   </table></div>
   <h3>기호</h3>
+  <p class="note">읽는 법은 흔히 쓰는 읽기입니다. 여러 가지로 읽는 기호는 함께 적었습니다. (보충)</p>
   <div class="tbl"><table>
-    <tr><th>기호</th><th>뜻</th><th>장</th></tr>
-    <tr><td class="m">dx</td><td>x의 아주 작은 변화. 결국 0에 가깝게 보낼 것이라는 약속</td><td><a href="#ch1">1</a></td></tr>
-    <tr><td class="m">Δx</td><td>실제 크기가 있는 작은 변화 (일반 교재의 관례)</td><td><a href="#ch1">1</a></td></tr>
-    <tr><td><span class="frac "><span><i>dy</i></span><span><i>dx</i></span></span></td><td>y = f(x)의 도함수 (라이프니츠 표기). 모양은 분수지만 그 분수가 다가가는 값</td><td><a href="#ch1">1</a></td></tr>
-    <tr><td class="m">f′(x)</td><td>같은 도함수 (라그랑주 표기). f′(3)은 x = 3에서의 미분계수</td><td><a href="#ch1">1</a></td></tr>
-    <tr><td class="m">∫<sub>0</sub><sup>x</sup> f(t) dt</td><td>0부터 x까지 f 그래프 아래 넓이. ∫는 합(Sum)의 S에서 옴</td><td><a href="#ch1">1</a></td></tr>
-    <tr><td>=</td><td>같다</td><td></td></tr>
-    <tr><td>≈</td><td>거의 같다 (근사)</td><td><a href="#ch1">1</a></td></tr>
-    <tr><td>⟹</td><td>그러므로. 앞 식을 변형하면 뒤 식이 나온다</td><td><a href="#ch1">1</a></td></tr>
-    <tr><td>→</td><td>~에 다가간다. 예: dt → 0</td><td><a href="#ch2">2</a></td></tr>
-    <tr><td class="m">s(t)</td><td>t초일 때의 위치. 괄호는 곱셈이 아니라 "함수에 넣는다"는 뜻</td><td><a href="#ch2">2</a></td></tr>
-    <tr><td class="m">θ</td><td>그리스 문자 세타. 각도에 흔히 붙이는 이름 (미적분에서는 라디안)</td><td><a href="#ch4">4</a></td></tr>
-    <tr><td class="m">g(h(x))</td><td>h(x)의 출력을 g에 넣은 합성 함수</td><td><a href="#ch5">5</a></td></tr>
-    <tr><td class="m">e</td><td>오일러 수, 약 2.71828</td><td><a href="#ch6">6</a></td></tr>
-    <tr><td class="m">ln a</td><td>e를 몇 제곱해야 a가 되는지. ln 2 ≈ 0.6931</td><td><a href="#ch6">6</a></td></tr>
-    <tr><td class="m">dS</td><td>입력 (x, y)를 (dx, dy)만큼 움직였을 때 S의 변화량</td><td><a href="#ch7">7</a></td></tr>
-    <tr><td class="m">lim<sub>h→0</sub></td><td>h가 0에 다가갈 때의 극한</td><td><a href="#ch8">8</a></td></tr>
-    <tr><td class="m">h</td><td>극한 정의에서 쓰는 작은 변화. dx와 같은 뜻의 유한한 수</td><td><a href="#ch8">8</a></td></tr>
-    <tr><td class="m">ε, δ</td><td>출력 쪽 허용 거리(엡실론), 입력 쪽 범위(델타)</td><td><a href="#ch9">9</a></td></tr>
-    <tr><td class="m">F(x) + C</td><td>역도함수와 임의의 상수</td><td><a href="#ch11">11</a></td></tr>
-    <tr><td>{F('<i>d</i>²<i>f</i>','<i>dx</i>²')}</td><td>2계 도함수. f″(x)로도 씀</td><td><a href="#ch13">13</a></td></tr>
-    <tr><td class="m">|x|</td><td>절댓값. x의 부호를 뗀 크기, 0에서의 거리. |−3| = 3</td><td><a href="#ch9">9</a></td></tr>
-    <tr><td class="m">f″(x), f‴(x)</td><td>2계, 3계 도함수. "f 더블 프라임", "f 트리플 프라임"</td><td><a href="#ch13">13</a></td></tr>
-    <tr><td class="m">f⁽ⁿ⁾(x)</td><td>n계 도함수. 괄호는 거듭제곱 fⁿ과 구분하려는 것</td><td><a href="#ch13">13</a></td></tr>
-    <tr><td class="m">n!</td><td>계승("n 팩토리얼"). 1 · 2 · 3 · ⋯ · n. 예: 4! = 24</td><td><a href="#ch14">14</a></td></tr>
-    <tr><td class="m">φ</td><td>황금비, 약 1.618</td><td><a href="#ch16">16</a></td></tr>
+    <tr><th>기호</th><th>읽는 법</th><th>뜻</th><th>장</th></tr>
+    <tr><td class="m">dx</td><td>디 엑스</td><td>x의 아주 작은 변화. 결국 0에 가깝게 보낼 것이라는 약속</td><td><a href="#ch1">1</a></td></tr>
+    <tr><td class="m">Δx</td><td>델타 엑스</td><td>실제 크기가 있는 작은 변화 (일반 교재의 관례)</td><td><a href="#ch1">1</a></td></tr>
+    <tr><td><span class="frac "><span><i>dy</i></span><span><i>dx</i></span></span></td><td>디와이 디엑스 (디와이 오버 디엑스)</td><td>y = f(x)의 도함수 (라이프니츠 표기). 모양은 분수지만 그 분수가 다가가는 값</td><td><a href="#ch1">1</a></td></tr>
+    <tr><td class="m">f′(x)</td><td>에프 프라임 엑스</td><td>같은 도함수 (라그랑주 표기). f′(3)은 x = 3에서의 미분계수</td><td><a href="#ch1">1</a></td></tr>
+    <tr><td class="m">∫<sub>0</sub><sup>x</sup> f(t) dt</td><td>인테그럴 0부터 x까지 에프 티 디티</td><td>0부터 x까지 f 그래프 아래 넓이. ∫는 합(Sum)의 S에서 옴</td><td><a href="#ch1">1</a></td></tr>
+    <tr><td>=</td><td>이퀄</td><td>같다</td><td></td></tr>
+    <tr><td>≈</td><td>니얼리 이퀄 (약)</td><td>거의 같다 (근사)</td><td><a href="#ch1">1</a></td></tr>
+    <tr><td>⟹</td><td>그러므로 (임플라이즈)</td><td>그러므로. 앞 식을 변형하면 뒤 식이 나온다</td><td><a href="#ch1">1</a></td></tr>
+    <tr><td>→</td><td>다가간다 (어프로치즈)</td><td>~에 다가간다. 예: dt → 0</td><td><a href="#ch2">2</a></td></tr>
+    <tr><td class="m">s(t)</td><td>에스 오브 티</td><td>t초일 때의 위치. 괄호는 곱셈이 아니라 "함수에 넣는다"는 뜻</td><td><a href="#ch2">2</a></td></tr>
+    <tr><td class="m">θ</td><td>세타</td><td>그리스 문자 세타. 각도에 흔히 붙이는 이름 (미적분에서는 라디안)</td><td><a href="#ch4">4</a></td></tr>
+    <tr><td class="m">g(h(x))</td><td>지 오브 에이치 오브 엑스</td><td>h(x)의 출력을 g에 넣은 합성 함수</td><td><a href="#ch5">5</a></td></tr>
+    <tr><td class="m">e</td><td>이</td><td>오일러 수, 약 2.71828</td><td><a href="#ch6">6</a></td></tr>
+    <tr><td class="m">ln a</td><td>엘엔 에이 (로그 에이)</td><td>e를 몇 제곱해야 a가 되는지. ln 2 ≈ 0.6931</td><td><a href="#ch6">6</a></td></tr>
+    <tr><td class="m">dS</td><td>디 에스</td><td>입력 (x, y)를 (dx, dy)만큼 움직였을 때 S의 변화량</td><td><a href="#ch7">7</a></td></tr>
+    <tr><td class="m">lim<sub>h→0</sub></td><td>리밋, 에이치가 0으로 갈 때</td><td>h가 0에 다가갈 때의 극한</td><td><a href="#ch8">8</a></td></tr>
+    <tr><td class="m">h</td><td>에이치</td><td>극한 정의에서 쓰는 작은 변화. dx와 같은 뜻의 유한한 수</td><td><a href="#ch8">8</a></td></tr>
+    <tr><td class="m">ε, δ</td><td>엡실론, 델타</td><td>출력 쪽 허용 거리(엡실론), 입력 쪽 범위(델타)</td><td><a href="#ch9">9</a></td></tr>
+    <tr><td class="m">|x|</td><td>엑스의 절댓값 (앱솔루트 엑스)</td><td>절댓값. x의 부호를 뗀 크기, 0에서의 거리. |−3| = 3</td><td><a href="#ch9">9</a></td></tr>
+    <tr><td class="m">F(x) + C</td><td>에프 엑스 플러스 씨</td><td>역도함수와 임의의 상수</td><td><a href="#ch11">11</a></td></tr>
+    <tr><td><span class="frac "><span><i>d</i>²<i>f</i></span><span><i>dx</i>²</span></span></td><td>디 제곱 에프 디 엑스 제곱 (디투 에프 디엑스 투)</td><td>2계 도함수. f″(x)로도 씀</td><td><a href="#ch13">13</a></td></tr>
+    <tr><td class="m">f″(x), f‴(x)</td><td>에프 더블 프라임 엑스, 에프 트리플 프라임 엑스</td><td>2계, 3계 도함수</td><td><a href="#ch13">13</a></td></tr>
+    <tr><td class="m">f⁽ⁿ⁾(x)</td><td>에프 엔 엑스 (에프의 n계 도함수)</td><td>n계 도함수. 괄호는 거듭제곱 fⁿ과 구분하려는 것</td><td><a href="#ch13">13</a></td></tr>
+    <tr><td class="m">n!</td><td>엔 팩토리얼</td><td>계승. 1 · 2 · 3 · ⋯ · n. 예: 4! = 24</td><td><a href="#ch14">14</a></td></tr>
+    <tr><td class="m">φ</td><td>파이 (그리스 문자 phi)</td><td>황금비, 약 1.618</td><td><a href="#ch16">16</a></td></tr>
   </table></div>
 </section>
 
